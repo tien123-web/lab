@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Khóa Học</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .form-group textarea {
+        resize: vertical;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Quản Lý Khóa Học</h1>
+
+      <!-- Danh sách khóa học -->
+      <h2>Danh Sách Khóa Học</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Khóa Học</th>
+            <th>Tên Khóa Học</th>
+            <th>Giảng Viên</th>
+            <th>Ngày Tạo</th>
+            <th>Hành Động</th>
+          </tr>
+        </thead>
+        <tbody id="course-list">
+          <!-- Các dòng khóa học sẽ được thêm vào đây -->
+        </tbody>
+      </table>
+      <button onclick="showCourseForm()">Thêm Khóa Học Mới</button>
+
+      <!-- Form Thêm/Chỉnh sửa Khóa Học -->
+      <div id="course-form" style="display: none; margin-top: 20px">
+        <h2 id="form-title">Thêm Khóa Học</h2>
+        <div class="form-group">
+          <label for="course-name">Tên Khóa Học</label>
+          <input
+            type="text"
+            id="course-name"
+            placeholder="Nhập tên khóa học"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="course-description">Mô Tả Khóa Học</label>
+          <textarea
+            id="course-description"
+            rows="4"
+            placeholder="Nhập mô tả khóa học"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="course-instructor">Giảng Viên</label>
+          <select id="course-instructor">
+            <option value="1">Nguyễn Văn A</option>
+            <option value="2">Trần Thị B</option>
+            <option value="3">Lê Văn C</option>
+          </select>
+        </div>
+        <button onclick="saveCourse()">Lưu Khóa Học</button>
+        <button onclick="cancelCourse()">Hủy</button>
+      </div>
+    </div>
+
+    <script>
+      let courses = [];
+      let isEditing = false;
+      let editingIndex = -1;
+
+      function showCourseForm() {
+        document.getElementById("course-form").style.display = "block";
+        document.getElementById("form-title").innerText = "Thêm Khóa Học";
+        isEditing = false;
+        clearForm();
+      }
+
+      function cancelCourse() {
+        document.getElementById("course-form").style.display = "none";
+      }
+
+      function clearForm() {
+        document.getElementById("course-name").value = "";
+        document.getElementById("course-description").value = "";
+        document.getElementById("course-instructor").value = "1";
+      }
+
+      function saveCourse() {
+        const name = document.getElementById("course-name").value;
+        const description = document.getElementById("course-description").value;
+        const instructor = document.getElementById("course-instructor").value;
+
+        if (name.trim() === "") {
+          alert("Tên khóa học không được để trống!");
+          return;
+        }
+
+        if (isEditing) {
+          // Chỉnh sửa khóa học
+          courses[editingIndex] = {
+            name,
+            description,
+            instructor,
+            createdAt: courses[editingIndex].createdAt,
+          };
+        } else {
+          // Thêm khóa học mới
+          courses.push({
+            name,
+            description,
+            instructor,
+            createdAt: new Date().toLocaleString(),
+          });
+        }
+
+        renderCourseList();
+        cancelCourse();
+      }
+
+      function renderCourseList() {
+        const courseList = document.getElementById("course-list");
+        courseList.innerHTML = "";
+
+        courses.forEach((course, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${course.name}</td>
+                    <td>${course.instructor}</td>
+                    <td>${course.createdAt}</td>
+                    <td>
+                        <button onclick="editCourse(${index})">Chỉnh Sửa</button>
+                        <button onclick="deleteCourse(${index})">Xóa</button>
+                    </td>
+                `;
+          courseList.appendChild(row);
+        });
+      }
+
+      function editCourse(index) {
+        const course = courses[index];
+        document.getElementById("course-name").value = course.name;
+        document.getElementById("course-description").value =
+          course.description;
+        document.getElementById("course-instructor").value = course.instructor;
+        document.getElementById("form-title").innerText = "Chỉnh Sửa Khóa Học";
+        document.getElementById("course-form").style.display = "block";
+        isEditing = true;
+        editingIndex = index;
+      }
+
+      function deleteCourse(index) {
+        if (confirm("Bạn có chắc chắn muốn xóa khóa học này?")) {
+          courses.splice(index, 1);
+          renderCourseList();
+        }
+      }
+    </script>
+  </body>
+</html>
