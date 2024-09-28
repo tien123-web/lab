@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản Lý Khóa Học</title>
     <style>
+      html,
+      body {
+        height: 100%; /* Đặt chiều cao của html và body là 100% */
+        margin: 0; /* Bỏ margin */
+      }
       body {
         font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f0f0f0;
+        background-color: #ade6bf; /* Màu nền xanh nhạt */
+        background-image: url("https://24hstore.vn/upload_images/images/hinh-nen-may-tinh/hinh_nen_thien_nhien_(2).jpg"); /* Đường dẫn tới ảnh nền */
+        background-size: cover; /* Ảnh sẽ bao phủ toàn bộ màn hình */
+        background-position: center; /* Căn giữa ảnh nền */
+        background-repeat: no-repeat; /* Không lặp lại ảnh nền */
+        display: flex; /* Để căn giữa nội dung theo chiều dọc */
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
       }
       h1 {
         text-align: center;
@@ -17,8 +27,13 @@
       }
       .container {
         max-width: 800px;
-        margin: 0 auto;
-        background-color: #fff;
+        margin: 20px; /* Thêm margin để tránh bị kẹp vào cạnh */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Màu nền trắng với độ trong suốt */
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -221,3 +236,4 @@
     </script>
   </body>
 </html>
+
