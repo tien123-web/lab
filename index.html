@@ -4,22 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản Lý Khóa Học - Home</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Thêm link đến file CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <?php
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.html"); // Chuyển hướng đến trang đăng nhập
+        exit();
+    }
+    ?>
     <!-- Menu Điều Hướng -->
-    <div class="topnav">
-        <a class="active" href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="lab.html">Lab</a>
-    </div>
+    <header class="topnav">
+        <nav>
+            <a class="active" href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="lab.html">Lab</a>
+            <a href="logout.php">Đăng Xuất</a>
+        </nav>
+    </header>
 
     <!-- Phần nội dung Home -->
-    <div id="home" class="section" style="display: block">
+    <main id="home" class="section">
         <div class="container">
             <h1>Trang chủ</h1>
-            <p>Chào mừng bạn đến với website của tôi.</p>
+            <p>Chào mừng bạn đến với website của tôi, <?php echo $_SESSION['username']; ?>!</p>
         </div>
-    </div>
+    </main>
 </body>
 </html>
