@@ -52,3 +52,28 @@
                     <input type="text" id="course-name-1" placeholder="Nhập tên khóa học" required />
                 </div>
                 <div class="form-group">
+                    <label for="course-description-1">Mô Tả Khóa Học</label>
+                    <textarea id="course-description-1" rows="4" placeholder="Nhập mô tả khóa học"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="course-instructor-1">Giảng Viên</label>
+                    <select id="course-instructor-1">
+                        <option value="1">Nguyễn Văn A</option>
+                        <option value="2">Trần Thị B</option>
+                        <option value="3">Lê Văn C</option>
+                    </select>
+                </div>
+                <button onclick="saveCourse('lab1')">Lưu Khóa Học</button>
+                <button onclick="cancelCourse('lab1')">Hủy</button>
+            </div>
+        </div>
+        <!-- Nút "Exit" để quay lại Home -->
+        <div style="text-align: center; margin: 20px;">
+            <a href="index.html">
+                <button>Exit</button>
+            </a>
+        </div>
+    </div>
+    <script src="lab.js"></script> <!-- Thêm link đến file JavaScript cho Lab -->
+</body>
+</html>
