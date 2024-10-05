@@ -1,29 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản Lý Khóa Học - Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Menu Điều Hướng -->
-    <header class="topnav">
-        <nav>
-            <a class="active" href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="lab.html">Lab</a>
-            <a href="logout.php">Đăng Xuất</a>
-        </nav>
-    </header>
-
-    <!-- Phần nội dung Home -->
-    <main id="home" class="section">
-        <div class="container">
-            <h1>Trang chủ</h1>
-            <p>Chào mừng bạn đến với website của tôi, <?php echo $_SESSION['username']; ?>!</p>
+    <div class="login-container">
+        <h2>Đăng Nhập</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Tên đăng nhập/Email" required />
+            <input type="password" id="password" placeholder="Mật khẩu" required />
+            <button type="submit">Đăng Nhập</button>
+        </form>
+        <div class="forgot-password">
+            <a href="#">Quên mật khẩu?</a>
         </div>
-    </main>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn gửi form
+            // Thay đổi thông tin đăng nhập hợp lệ ở đây
+            const validUsername = "student@example.com";
+            const validPassword = "password123";
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === validUsername && password === validPassword) {
+                // Chuyển hướng đến dashboard
+                window.location.href = "dashboard.html";
+            } else {
+                alert('Tên đăng nhập hoặc mật khẩu không đúng!');
+            }
+        });
+    </script>
 </body>
 </html>
