@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,13 +14,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <?php
-    session_start();
-    if (!isset($_SESSION['username'])) {
-        header("Location: login.html"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
-        exit();
-    }
-    ?>
     <!-- Menu Điều Hướng -->
     <header class="topnav">
         <nav>
