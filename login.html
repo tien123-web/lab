@@ -3,56 +3,51 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản Lý Khóa Học - Đăng Nhập</title>
+    <title>Quản Lý Khóa Học - Home</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 20px;
         }
-        .login-container {
-            background-color: white;
+        .topnav {
+            background-color: #28a745;
+            padding: 10px;
+            color: white;
+        }
+        .topnav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .container {
+            background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h2 {
-            text-align: center;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Đăng Nhập</h2>
-        <form action="process_login.php" method="post">
-            <input type="text" name="username" placeholder="Tên đăng nhập" required />
-            <input type="password" name="password" placeholder="Mật khẩu" required />
-            <button type="submit">Đăng Nhập</button>
-        </form>
-    </div>
+    <!-- Menu Điều Hướng -->
+    <header class="topnav">
+        <nav>
+            <a class="active" href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="lab.html">Lab</a>
+            <a href="login.html">Đăng Nhập</a> <!-- Chuyển đến trang đăng nhập -->
+        </nav>
+    </header>
+
+    <!-- Phần nội dung Home -->
+    <main id="home" class="section">
+        <div class="container">
+            <h1>Trang chủ</h1>
+            <p>Chào mừng bạn đến với website của tôi!</p>
+            <p>Để truy cập vào hệ thống, vui lòng <a href="login.html">đăng nhập</a>.</p>
+        </div>
+    </main>
 </body>
 </html>
