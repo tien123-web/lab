@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Nếu có CSS riêng -->
+</head>
+<body>
+    <!-- Menu Điều Hướng -->
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="lab.html">Lab</a>
+    </div>
+
+    <!-- Phần nội dung Lab -->
+    <div id="lab" class="section">
+        <div class="container">
+            <h1>Lab</h1>
+            <p>Chọn một lab bên dưới để xem chi tiết.</p>
+            <div class="tab active" onclick="showLab('lab1', this)">Lab1</div>
+            <div class="tab" onclick="showLab('lab2', this)">Lab2</div>
+            <div class="tab" onclick="showLab('lab3', this)">Lab3</div>
+        </div>
+    </div>
+
+    <!-- Phần nội dung Lab1 -->
+    <div id="lab1" class="section">
+        <div class="container">
+            <h1>Lab1 - Quản Lý Khóa Học</h1>
+            <h2>Danh Sách Khóa Học</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Khóa Học</th>
+                        <th>Tên Khóa Học</th>
+                        <th>Giảng Viên</th>
+                        <th>Ngày Tạo</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody id="course-list-1">
+                    <!-- Các dòng khóa học sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+            <button onclick="showCourseForm('lab1')">Thêm Khóa Học Mới</button>
+
+            <div id="course-form-1" class="course-form" style="display: none; margin-top: 20px">
+                <h2 id="form-title-1">Thêm Khóa Học</h2>
+                <div class="form-group">
+                    <label for="course-name-1">Tên Khóa Học</label>
+                    <input type="text" id="course-name-1" placeholder="Nhập tên khóa học" required />
+                </div>
+                <div class="form-group">
+                    <label for="course-description-1">Mô Tả Khóa Học</label>
+                    <textarea id="course-description-1" rows="4" placeholder="Nhập mô tả khóa học"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="course-instructor-1">Giảng Viên</label>
+                    <select id="course-instructor-1">
+                        <option value="1">Nguyễn Văn A</option>
+                        <option value="2">Trần Thị B</option>
+                        <option value="3">Lê Văn C</option>
+                    </select>
+                </div>
+                <button onclick="saveCourse('lab1')">Lưu Khóa Học</button>
+                <button onclick="cancelCourse('lab1')">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần nội dung Lab2 -->
+    <div id="lab2" class="section">
+        <div class="container">
+            <h1>Lab2</h1>
+            <p>Phần nội dung cho Lab2 sẽ được cập nhật sau.</p>
+        </div>
+    </div>
+
+    <!-- Phần nội dung Lab3 -->
+    <div id="lab3" class="section">
+        <div class="container">
+            <h1>Lab3</h1>
+            <p>Phần nội dung cho Lab3 sẽ được cập nhật sau.</p>
+        </div>
+    </div>
+
+    <!-- Nút "Exit" để quay lại Home -->
+    <div style="text-align: center; margin: 20px;">
+        <a href="index.html">
+            <button>Exit</button>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
