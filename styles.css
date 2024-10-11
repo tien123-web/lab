@@ -1,191 +1,226 @@
+/* styles.css */
+
+/* Định dạng cho tổng thể trang */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Thay đổi màu nền cho body */
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Định dạng cho phần bảng điều khiển */
+.dashboard-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng cho danh sách bài tập */
+.exercises {
+  margin: 20px 0;
+}
+
+/* Định dạng cho từng bài tập */
+.exercise {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Định dạng cho nút */
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Định dạng cho phần soạn mã */
+.coding-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#codeEditor {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: monospace;
+}
+
+/* Định dạng cho phần phản hồi */
+#feedback {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Màu nền chung cho body */
   margin: 0;
   padding: 20px;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #fff; /* Thêm màu nền trắng cho container */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+h1,
+h2,
+h3 {
+  color: #333; /* Màu tiêu đề */
+  text-align: center; /* Căn giữa tiêu đề */
 }
 
-h1 {
-  text-align: center;
-  color: #333;
+.container,
+.login-container,
+.dashboard-container,
+.coding-container {
+  max-width: 800px; /* Chiều rộng tối đa */
+  margin: auto; /* Căn giữa */
+  background-color: #fff; /* Màu nền trắng */
+  padding: 20px;
+  border-radius: 10px; /* Bo tròn các góc */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+}
+
+nav {
+  background-color: #28a745; /* Màu nền cho thanh điều hướng */
+  padding: 10px;
 }
 
 nav ul {
-  list-style: none;
+  list-style: none; /* Bỏ dấu chấm cho danh sách */
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
-  background-color: #28a745;
-  padding: 10px;
+  justify-content: center; /* Căn giữa các liên kết */
 }
 
 nav ul li {
-  margin-right: 20px;
+  margin-right: 20px; /* Khoảng cách giữa các liên kết */
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  text-decoration: none; /* Bỏ gạch chân */
+  color: white; /* Màu chữ */
+  font-weight: bold; /* In đậm chữ */
+  padding: 10px; /* Khoảng cách trong nút */
+  border-radius: 5px; /* Bo tròn nút */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
 }
 
 nav ul li a.active,
 nav ul li a:hover {
-  background-color: #218838;
+  background-color: #218838; /* Màu nền khi hover */
 }
 
-/* Tabs cho Labs */
 .tab {
   display: inline-block;
-  background-color: #eee;
+  background-color: #eee; /* Màu nền cho tab */
   padding: 10px 20px;
   margin: 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  cursor: pointer; /* Con trỏ khi hover */
+  border-radius: 5px; /* Bo tròn góc */
+  transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
 }
 
 .tab:hover {
-  background-color: #ddd;
+  background-color: #ddd; /* Màu nền khi hover */
 }
 
-/* Nội dung lab */
 .lab-content {
-  margin-top: 20px;
-  background-color: #f9f9f9;
+  margin-top: 20px; /* Khoảng cách trên lab */
+  background-color: #f9f9f9; /* Màu nền cho nội dung lab */
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; /* Bo tròn góc */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  width: 100%; /* Đầy đủ chiều rộng */
+  border-collapse: collapse; /* Bỏ khoảng cách giữa các ô */
+  margin-bottom: 20px; /* Khoảng cách dưới bảng */
 }
 
 table,
 th,
 td {
-  border: 1px solid #ddd;
+  border: 1px solid #ddd; /* Đường viền cho bảng */
 }
 
 th,
 td {
-  padding: 10px;
-  text-align: left;
+  padding: 10px; /* Khoảng cách trong ô */
+  text-align: left; /* Căn trái chữ */
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #f4f4f4; /* Màu nền cho tiêu đề bảng */
 }
 
 button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
+  background-color: #5cb85c; /* Màu nền cho nút */
+  color: white; /* Màu chữ cho nút */
+  border: none; /* Bỏ đường viền */
+  padding: 10px 20px; /* Khoảng cách trong nút */
+  cursor: pointer; /* Con trỏ khi hover */
+  border-radius: 5px; /* Bo tròn góc */
+  transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #4cae4c; /* Màu nền khi hover */
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Khoảng cách dưới nhóm trường */
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 5px;
+  display: block; /* Hiển thị nhãn thành khối */
+  margin-bottom: 5px; /* Khoảng cách dưới nhãn */
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+  width: 100%; /* Đầy đủ chiều rộng */
+  padding: 8px; /* Khoảng cách trong ô nhập */
+  box-sizing: border-box; /* Bao gồm padding vào kích thước */
+  border: 1px solid #ccc; /* Đường viền cho ô nhập */
+  border-radius: 4px; /* Bo tròn góc */
 }
 
 .form-group textarea {
-  resize: vertical;
-}
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 20px;
-}
-
-h2,
-h3 {
-  color: #333;
-}
-
-.login-container,
-.dashboard-container,
-.coding-container {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: auto;
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-}
-
-input,
-select,
-textarea,
-button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  background-color: #5cb85c;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #4cae4c;
+  resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
 }
 
 .exercise {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #f9f9f9;
+  border: 1px solid #ddd; /* Đường viền cho bài tập */
+  border-radius: 5px; /* Bo tròn góc */
+  padding: 10px; /* Khoảng cách trong bài tập */
+  margin: 10px 0; /* Khoảng cách trên và dưới */
+  background-color: #f9f9f9; /* Màu nền cho bài tập */
 }
+
+/* Đối với các test case */
 #testCases {
   list-style-type: decimal; /* Đánh số tự động cho danh sách */
-  margin-left: 20px; /* Thêm khoảng cách bên trái */
+  margin-left: 20px; /* Khoảng cách bên trái */
 }
 
 #testCases li {
