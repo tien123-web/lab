@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Học Lập Trình</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <h2>Bảng Điều Khiển</h2>
+      <h3>Danh Sách Bài Tập</h3>
+      <div class="filter">
+        <label for="language">Lọc theo ngôn ngữ:</label>
+        <select id="language" onchange="filterExercises()">
+          <option value="all">Tất cả</option>
+          <option value="c">C</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+        </select>
+      </div>
+      <div class="exercises" id="exerciseList">
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 1: Giải Phương Trình Bậc Nhất</h4>
+          <p>Mô tả: Viết chương trình giải phương trình bậc nhất.</p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="c">
+          <h4>Bài Tập 2: Sắp Xếp Mảng</h4>
+          <p>Mô tả: Viết chương trình sắp xếp một mảng số nguyên.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="java">
+          <h4>Bài Tập 3: Tính Tổng Hai Số</h4>
+          <p>Mô tả: Viết chương trình tính tổng của hai số nguyên.</p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 4: In Dãy Số Fibonacci</h4>
+          <p>Mô tả: Viết chương trình in ra dãy số Fibonacci cho đến n.</p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="java">
+          <h4>Bài Tập 5: Đảo Ngược Chuỗi</h4>
+          <p>Mô tả: Viết chương trình đảo ngược một chuỗi cho trước.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="c">
+          <h4>Bài Tập 6: Tính Giai Thừa</h4>
+          <p>
+            Mô tả: Viết chương trình tính giai thừa của một số nguyên dương.
+          </p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 7: Tìm Kiếm Phần Tử Trong Mảng</h4>
+          <p>Mô tả: Viết chương trình tìm kiếm một phần tử trong mảng.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="c">
+          <h4>Bài Tập 8: Tính Số Nguyên Tố</h4>
+          <p>
+            Mô tả: Viết chương trình kiểm tra một số có phải là số nguyên tố hay
+            không.
+          </p>
+          <p>Độ khó: Khó</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="java">
+          <h4>Bài Tập 9: Sắp Xếp Một Mảng</h4>
+          <p>
+            Mô tả: Viết chương trình sắp xếp một mảng các số nguyên theo thứ tự
+            tăng dần.
+          </p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 10: Tính Trung Bình Cộng</h4>
+          <p>Mô tả: Viết chương trình tính trung bình cộng của một mảng số.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+      </div>
+      <h3>Bảng Xếp Hạng</h3>
+      <div id="leaderboard"></div>
+      <h3>Phản Hồi</h3>
+      <textarea
+        id="feedback"
+        rows="4"
+        placeholder="Nhập phản hồi của bạn..."
+      ></textarea>
+      <button onclick="submitFeedback()">Gửi Phản Hồi</button>
+    </div>
+
+    <div class="coding-container" style="display: none">
+      <h2 id="exerciseTitle"></h2>
+      <p id="exerciseDescription"></p>
+
+      <h3>Test Cases</h3>
+      <div id="testCases"></div>
+
+      <h3>Soạn Mã</h3>
+      <textarea
+        id="codeEditor"
+        rows="10"
+        placeholder="Nhập mã lập trình của bạn ở đây..."
+      ></textarea>
+      <button onclick="getHint()">Gợi Ý</button>
+      <button onclick="runCode()">Chạy Mã</button>
+      <button onclick="clearCode()">Xóa Mã</button>
+      <button onclick="submitCode()">Nộp Bài</button>
+      <div id="result" style="margin-top: 20px"></div>
+      <button onclick="backToDashboard()">Quay Lại Bảng Điều Khiển</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      // Hiện bảng điều khiển ngay khi tải trang
+      document.querySelector(".dashboard-container").style.display = "block";
+
+      function filterExercises() {
+        const filterValue = document.getElementById("language").value;
+        const exercises = document.querySelectorAll(".exercise");
+        exercises.forEach((exercise) => {
+          if (
+            filterValue === "all" ||
+            exercise.dataset.language === filterValue
+          ) {
+            exercise.style.display = "block";
+          } else {
+            exercise.style.display = "none";
+          }
+        });
+      }
+
+      function selectExercise(button) {
+        const exerciseDiv = button.parentElement;
+        const title = exerciseDiv.querySelector("h4").innerText;
+        const description = exerciseDiv.querySelector("p").innerText;
+
+        document.getElementById("exerciseTitle").innerText = title;
+        document.getElementById("exerciseDescription").innerText = description;
+
+        // Hiển thị phần soạn mã
+        document.querySelector(".dashboard-container").style.display = "none";
+        document.querySelector(".coding-container").style.display = "block";
+      }
+
+      function backToDashboard() {
+        document.querySelector(".coding-container").style.display = "none";
+        document.querySelector(".dashboard-container").style.display = "block";
+      }
+
+      function submitFeedback() {
+        const feedback = document.getElementById("feedback").value;
+        alert("Phản hồi của bạn đã được gửi: " + feedback);
+        document.getElementById("feedback").value = "";
+      }
+
+      function getHint() {
+        alert(
+          "Gợi ý cho bài tập này: Thử sử dụng vòng lặp và điều kiện để giải quyết bài toán."
+        );
+      }
+
+      function runCode() {
+        const code = document.getElementById("codeEditor").value;
+        alert("Chạy mã: \n" + code);
+      }
+
+      function clearCode() {
+        document.getElementById("codeEditor").value = "";
+        alert("Mã đã được xóa.");
+      }
+
+      function submitCode() {
+        const code = document.getElementById("codeEditor").value;
+        alert("Bạn đã nộp bài: \n" + code);
+      }
+    </script>
+  </body>
+</html>
