@@ -1,131 +1,197 @@
-/* styles.css */
-
-/* Thiết lập cơ bản */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Thay đổi màu nền cho body */
+  margin: 0;
+  padding: 20px;
 }
 
-/* Điều hướng */
-nav {
-    background-color: #5cb85c;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff; /* Thêm màu nền trắng cho container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #28a745;
+  padding: 10px;
 }
 
 nav ul li {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
+nav ul li a.active,
 nav ul li a:hover {
-    background-color: #4cae4c;
+  background-color: #218838;
 }
 
-nav ul li a.active {
-    background-color: #337ab7;
-    color: #fff;
-}
-
-/* Container cho nội dung */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Tiêu đề */
-h1 {
-    font-size: 2.5rem;
-    color: #5cb85c;
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* Đoạn văn */
-p {
-    font-size: 1.2rem;
-    text-align: center;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-/* Tabs cho các labs */
+/* Tabs cho Labs */
 .tab {
-    display: inline-block;
-    background-color: #eee;
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  background-color: #eee;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .tab:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
-/* Các trường nhập */
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Nội dung lab */
+.lab-content {
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Nút đăng nhập */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
 button {
-    background-color: #5cb85c;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 button:hover {
-    background-color: #4cae4c;
+  background-color: #45a049;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
+.form-group {
+  margin-bottom: 15px;
+}
 
-    nav ul li {
-        margin-bottom: 10px;
-    }
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
 
-    h1 {
-        font-size: 2rem;
-    }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
 
-    p {
-        font-size: 1rem;
-    }
+.form-group textarea {
+  resize: vertical;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+h2,
+h3 {
+  color: #333;
+}
+
+.login-container,
+.dashboard-container,
+.coding-container {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input,
+select,
+textarea,
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4cae4c;
+}
+
+.exercise {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+}
+#testCases {
+  list-style-type: decimal; /* Đánh số tự động cho danh sách */
+  margin-left: 20px; /* Thêm khoảng cách bên trái */
+}
+
+#testCases li {
+  margin-bottom: 10px; /* Khoảng cách giữa các test case */
+  border: 1px solid #ccc; /* Đường viền quanh từng test case */
+  padding: 10px; /* Khoảng cách bên trong */
+  border-radius: 5px; /* Bo tròn các góc */
+  background-color: #f9f9f9; /* Màu nền nhẹ */
 }
