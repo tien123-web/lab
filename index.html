@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chính</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <nav>
-        <ul>
-            <li><a href="login.html">Đăng nhập</a></li>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="labs.html">Labs</a></li>
-        </ul>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="labs.html">Labs</a></li>
+        <li><a href="#" onclick="logout()">Đăng xuất</a></li>
+      </ul>
     </nav>
     <div class="container">
-        <h1>Chào mừng đến với trang chủ</h1>
-        <p>Đây là nội dung chính của trang chủ.</p>
+      <h1>Chào mừng đến với trang chủ!</h1>
+      <p>Đây là trang chính sau khi bạn đã đăng nhập thành công.</p>
     </div>
-</body>
+
+    <script>
+      // Kiểm tra xem người dùng có đăng nhập chưa
+      if (!localStorage.getItem("loggedIn")) {
+        // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
+        window.location.href = "login.html";
+      }
+
+      function logout() {
+        // Xóa trạng thái đăng nhập
+        localStorage.removeItem("loggedIn");
+        // Chuyển hướng về trang đăng nhập
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
 </html>
