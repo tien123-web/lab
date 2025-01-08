@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Goals</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f9fafb;
+        padding: 40px;
+      }
+
+      .container {
+        display: flex;
+        max-width: 1400px;
+        margin: auto;
+        gap: 40px;
+      }
+
+      .left-section {
+        flex: 1;
+      }
+
+      .right-section {
+        flex: 1.5;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      .goal-card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .goal-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .goal-card.active {
+        border-left: 5px solid #6a1b9a;
+      }
+
+      .icon {
+        font-size: 28px;
+        margin-right: 20px;
+      }
+
+      .goal-card .content h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .goal-card .content p {
+        color: #666;
+      }
+
+      .badge {
+        background-color: #e1e4fb;
+        color: #3447f5;
+        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 5px;
+        margin-left: 10px;
+      }
+
+      a {
+        color: #3447f5;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .score-box {
+        margin-bottom: 30px;
+      }
+
+      .score-box h2 {
+        font-size: 28px;
+        color: #6a1b9a;
+      }
+
+      .score-box .chart {
+        background-color: #f4f4f7;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      .percentile {
+        margin-top: 10px;
+        color: #555;
+      }
+
+      .answers-summary {
+        display: flex;
+        gap: 15px;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      .label {
+        background-color: #f0f0f5;
+        padding: 5px 10px;
+        border-radius: 8px;
+      }
+
+      .label.correct {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      .label.incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .label.skipped {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      .question {
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+        margin-top: 10px;
+      }
+    </style>
+    <style>
+      .back-button {
+        margin: 20px;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-section">
+        <h2>Learning focused on your goals</h2>
+
+        <div class="goal-card active">
+          <div class="icon">⭐</div>
+          <div class="content">
+            <h3>Hands-on training</h3>
+            <p>
+              Upskill effectively with AI-powered coding exercises, practice
+              tests, and quizzes.
+            </p>
+          </div>
+        </div>
+
+        <div class="goal-card">
+          <div class="icon">📜</div>
+          <div class="content">
+            <h3>Certification prep</h3>
+            <p>
+              Prep for industry-recognized certifications by solving real-world
+              challenges and earn badges along the way.
+            </p>
+          </div>
+        </div>
+
+        <div class="goal-card">
+          <div class="icon">📊</div>
+          <div class="content">
+            <h3>
+              Insights and analytics <span class="badge">Enterprise Plan</span>
+            </h3>
+            <p>
+              Fast-track goals with advanced insights plus a dedicated customer
+              success team to help drive effective learning.
+            </p>
+            <a href="#">Find out more →</a>
+          </div>
+        </div>
+
+        <div class="goal-card">
+          <div class="icon">🔗</div>
+          <div class="content">
+            <h3>
+              Customizable content <span class="badge">Enterprise Plan</span>
+            </h3>
+            <p>
+              Create tailored learning paths for team and organization goals and
+              even host your own content and resources.
+            </p>
+            <a href="#">Find out more →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-section">
+        <div class="assessment">
+          <h3>Containerization</h3>
+          <p>📝 30 questions</p>
+          <div class="score-box">
+            <h2>Your score: 159</h2>
+            <a href="#">What do these numbers mean?</a>
+            <div class="chart">
+              <p><strong>Superior</strong> <span>150-200</span></p>
+              <p><strong>Established</strong> <span>100-149</span></p>
+              <p><strong>Developing</strong> <span>50-99</span></p>
+              <p><strong>Limited</strong> <span>0-49</span></p>
+            </div>
+            <p class="percentile">
+              Your performance was better than 88% of learners who have
+              completed this assessment.
+            </p>
+          </div>
+          <div class="answers-summary">
+            <span class="label correct">23 correct</span>
+            <span class="label incorrect">7 incorrect</span>
+            <span class="label skipped">0 skipped</span>
+          </div>
+          <div class="question">
+            <p>Question 1 <span class="correct">Correct</span></p>
+            <p>
+              Which of the following scenarios will benefit most from a managed
+              Kubernetes service, such as AWS EKS or Google Cloud's GKE?
+            </p>
+          </div>
+          <div class="question">
+            <p>Question 2 <span class="correct">Correct</span></p>
+            <p>
+              You containerized a web application, and one of the containers is
+              running the database engine. Which of the following strategies is
+              the best to persist the data?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="back-button" id="back-button" style="display: none">
+      Go Back
+    </button>
+    <button class="back-button" onclick="loadLabContent('lab6.html')">
+      Quay lại Lab 6
+    </button>
+
+    <script>
+      // Lấy tham số 'prev' từ URL
+      const params = new URLSearchParams(window.location.search);
+      const prevPage = params.get("prev");
+
+      // Nếu tồn tại trang trước đó, hiển thị nút "Go Back"
+      if (prevPage) {
+        const backButton = document.getElementById("back-button");
+        backButton.style.display = "block";
+        backButton.addEventListener("click", () => {
+          loadLabContent(prevPage);
+        });
+      }
+    </script>
+  </body>
+</html>
