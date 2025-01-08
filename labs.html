@@ -5,86 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Labs</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Thêm jQuery cho AJAX -->
   </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="labs.html" class="active">Labs</a></li>
-        <li><a href="#" onclick="logout()">Đăng xuất</a></li>
-      </ul>
-      <ul>
-        <li><a href="#" onclick="showLab('lab1')">Lab 1</a></li>
-        <li><a href="#" onclick="showLab('lab2')">Lab 2</a></li>
-        <li><a href="#" onclick="showLab('lab3')">Lab 3</a></li>
-        <li><a href="#" onclick="showLab('lab4')">Lab 4</a></li>
-      </ul>
-    </nav>
-    <div class="container">
-      <div id="labContent" class="lab-content" style="display: none">
-        <h2 id="labTitle"></h2>
-        <div id="labDescription"></div>
+  <body class="labs-page">
+    <!-- Thanh điều hướng -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html">
+          <img
+            src="/img/Ảnh chụp màn hình 2024-11-17 163108.png"
+            alt="Logo"
+            class="logo"
+          />
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="labs.html" class="active">Labs</a></li>
+        </ul>
       </div>
+    </nav>
+
+    <!-- Tabs cho Labs -->
+    <div class="tabs-container">
+      <ul class="tabs-list">
+        <li>
+          <a href="#" class="tab-link" onclick="loadLabContent('lab1.html')"
+            >Lab 1</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-link" onclick="loadLabContent('lab2.html')"
+            >Lab 2</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-link" onclick="loadLabContent('lab3.html')"
+            >Lab 3</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-link" onclick="loadLabContent('lab4.html')"
+            >Lab 4</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-link" onclick="loadLabContent('lab5.html')"
+            >Lab 5</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-link" onclick="loadLabContent('lab6.html')"
+            >Lab 6</a
+          >
+        </li>
+      </ul>
     </div>
+
+    <!-- Nội dung của Lab sẽ được tải vào đây -->
+    <div id="lab-content" class="lab-content">
+      <p>Vui lòng chọn một Lab để xem nội dung...</p>
+    </div>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col contact-info">
+          <img
+            src="/img/Ảnh chụp màn hình 2024-11-17 163108.png"
+            alt="Profile"
+            class="profile-pic"
+          />
+          <ul>
+            <li>🏚 Thủ Đức, TP.Hồ Chí Minh</li>
+            <li>☎ 0988708461</li>
+            <li>✉ 23130330@st.hcmuaf.edu.vn</li>
+            <li>✉ tiendinh20032005@gmail.com</li>
+          </ul>
+        </div>
+
+        <div class="footer-col quick-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="labs.html">Labs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col contact-form">
+          <h3>Contact Us</h3>
+          <form>
+            <input type="text" placeholder="Your Name" />
+            <input type="email" placeholder="Email" />
+            <textarea placeholder="Message"></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </footer>
     <script src="script.js"></script>
-    <script>
-      // Kiểm tra xem người dùng có đăng nhập không
-      if (!localStorage.getItem("loggedIn")) {
-        window.location.href = "login.html";
-      }
-
-      function logout() {
-        localStorage.removeItem("loggedIn");
-        window.location.href = "login.html";
-      }
-
-      function showLab(lab) {
-        let labTitle = "";
-        let labFile = "";
-
-        switch (lab) {
-          case "lab1":
-            labTitle = "Lab 1: Quản lý về khóa học";
-            labFile = "lab1.html"; // Đường dẫn tới file lab1.html
-            break;
-          case "lab2":
-            labTitle = "Lab 2: Hệ thống ngôn ngữ";
-            labFile = "lab2.html"; // Đường dẫn tới file lab2.html
-            break;
-          case "lab3":
-            labTitle = "Lab 3: JavaScript cơ bản";
-            labFile = "lab3.html"; // Đường dẫn tới file lab3.html
-            break;
-            case "lab4":
-            labTitle = "Lab 4: JavaScript cơ bản";
-            labFile = "lab4.html"; // Đường dẫn tới file lab4.html
-            break;
-          default:
-            alert("Lab không hợp lệ!");
-            return; // Ngừng hàm nếu không tìm thấy lab
-        }
-
-        document.getElementById("labTitle").innerText = labTitle;
-
-        // Xóa nội dung cũ trước khi tải nội dung mới
-        document.getElementById("labDescription").innerHTML = "";
-
-        fetch(labFile)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.text();
-          })
-          .then((data) => {
-            document.getElementById("labDescription").innerHTML = data; // Hiển thị nội dung
-            document.getElementById("labContent").style.display = "block"; // Hiển thị nội dung lab
-          })
-          .catch((error) => {
-            console.error("Error fetching the lab file:", error);
-          });
-      }
-    </script>
   </body>
 </html>
