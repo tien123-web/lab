@@ -1,232 +1,277 @@
-/* styles.css */
-
-/* Định dạng cho tổng thể trang */
+/* --------------------- Reset Cơ Bản --------------------- */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
+  background-color: #fdfdfd;
+  color: #444;
 }
 
-/* Định dạng cho phần bảng điều khiển */
-.dashboard-container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* --------------------- Thanh Điều Hướng (Navbar) --------------------- */
+.navbar {
+  background-color: #2c3e50;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Định dạng cho danh sách bài tập */
-.exercises {
-  margin: 20px 0;
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Thêm padding để tránh khoảng trắng */
 }
 
-/* Định dạng cho từng bài tập */
-.exercise {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-}
-
-/* Định dạng cho nút */
-button {
-  padding: 10px 15px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
+.navbar .logo {
+  width: 45px;
+  border-radius: 50%;
+  animation: logoPulsing 1.5s infinite; /* Hiệu ứng logo */
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.navbar .nav-links {
+  display: flex;
+  list-style: none;
+  gap: 15px;
 }
 
-/* Định dạng cho phần soạn mã */
-.coding-container {
-  max-width: 800px;
+.navbar .nav-links a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.navbar .nav-links a:hover {
+  background-color: #34495e;
+}
+@keyframes logoPulsing {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* --------------------- Footer --------------------- */
+footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-col h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: #bdc3c7;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  color: #ecf0f1;
+}
+
+/* --------------------- Trang Index --------------------- */
+.index-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.index-content {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 30px;
+  max-width: 900px;
+  margin: 30px auto;
+  text-align: left;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.index-content h1 {
+  color: #2c3e50;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.index-content p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --------------------- Trang About --------------------- */
+.about-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.about-container .left {
+  flex: 1;
+  background-color: #ecf0f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.about-container .left img {
+  width: 80%;
+  border-radius: 10px;
+}
+
+.about-container .right {
+  flex: 2;
+  padding: 30px;
+}
+
+.about-container .right h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.about-container .right p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* --------------------- Tabs --------------------- */
+.tabs-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #ecf0f1;
+  padding: 10px 0;
+}
+
+.tabs-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.tabs-list li {
+  margin-right: 10px;
+}
+
+.tab-link {
+  text-decoration: none;
+  font-size: 16px;
+  color: #555;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: #dcdde1;
+  transition: background-color 0.2s;
+}
+
+.tab-link.active {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* --------------------- Trang Labs --------------------- */
+.labs-container {
+  max-width: 1000px;
   margin: 20px auto;
   padding: 20px;
-  background: white;
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-#codeEditor {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: monospace;
-}
-
-/* Định dạng cho phần phản hồi */
-#feedback {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4; /* Màu nền chung cho body */
-  margin: 0;
-  padding: 20px;
-}
-
-h1,
-h2,
-h3 {
-  color: #333; /* Màu tiêu đề */
-  text-align: center; /* Căn giữa tiêu đề */
-}
-
-.container,
-.login-container,
-.dashboard-container,
-.coding-container {
-  max-width: 800px; /* Chiều rộng tối đa */
-  margin: auto; /* Căn giữa */
-  background-color: #fff; /* Màu nền trắng */
-  padding: 20px;
-  border-radius: 10px; /* Bo tròn các góc */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
-}
-
-nav {
-  background-color: #28a745; /* Màu nền cho thanh điều hướng */
-  padding: 10px;
-}
-
-nav ul {
-  list-style: none; /* Bỏ dấu chấm cho danh sách */
+.labs-list {
+  list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center; /* Căn giữa các liên kết */
+  flex-direction: column;
+  gap: 10px;
 }
 
-nav ul li {
-  margin-right: 20px; /* Khoảng cách giữa các liên kết */
+.labs-list li a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: #ecf0f1;
+  transition: background-color 0.2s;
 }
 
-nav ul li a {
-  text-decoration: none; /* Bỏ gạch chân */
-  color: white; /* Màu chữ */
-  font-weight: bold; /* In đậm chữ */
-  padding: 10px; /* Khoảng cách trong nút */
-  border-radius: 5px; /* Bo tròn nút */
-  transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+.labs-list li a:hover {
+  background-color: #bdc3c7;
+  color: #fff;
 }
 
-nav ul li a.active,
-nav ul li a:hover {
-  background-color: #218838; /* Màu nền khi hover */
+/* --------------------- Form Liên Hệ --------------------- */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.tab {
-  display: inline-block;
-  background-color: #eee; /* Màu nền cho tab */
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer; /* Con trỏ khi hover */
-  border-radius: 5px; /* Bo tròn góc */
-  transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
 }
 
-.tab:hover {
-  background-color: #ddd; /* Màu nền khi hover */
+.contact-form button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.lab-content {
-  margin-top: 20px; /* Khoảng cách trên lab */
-  background-color: #f9f9f9; /* Màu nền cho nội dung lab */
-  padding: 15px;
-  border-radius: 5px; /* Bo tròn góc */
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng */
-}
-
-table {
-  width: 100%; /* Đầy đủ chiều rộng */
-  border-collapse: collapse; /* Bỏ khoảng cách giữa các ô */
-  margin-bottom: 20px; /* Khoảng cách dưới bảng */
-}
-
-table,
-th,
-td {
-  border: 1px solid #ddd; /* Đường viền cho bảng */
-}
-
-th,
-td {
-  padding: 10px; /* Khoảng cách trong ô */
-  text-align: left; /* Căn trái chữ */
-}
-
-th {
-  background-color: #f4f4f4; /* Màu nền cho tiêu đề bảng */
-}
-
-button {
-  background-color: #5cb85c; /* Màu nền cho nút */
-  color: white; /* Màu chữ cho nút */
-  border: none; /* Bỏ đường viền */
-  padding: 10px 20px; /* Khoảng cách trong nút */
-  cursor: pointer; /* Con trỏ khi hover */
-  border-radius: 5px; /* Bo tròn góc */
-  transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
-}
-
-button:hover {
-  background-color: #4cae4c; /* Màu nền khi hover */
-}
-
-.form-group {
-  margin-bottom: 15px; /* Khoảng cách dưới nhóm trường */
-}
-
-.form-group label {
-  display: block; /* Hiển thị nhãn thành khối */
-  margin-bottom: 5px; /* Khoảng cách dưới nhãn */
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%; /* Đầy đủ chiều rộng */
-  padding: 8px; /* Khoảng cách trong ô nhập */
-  box-sizing: border-box; /* Bao gồm padding vào kích thước */
-  border: 1px solid #ccc; /* Đường viền cho ô nhập */
-  border-radius: 4px; /* Bo tròn góc */
-}
-
-.form-group textarea {
-  resize: vertical; /* Cho phép thay đổi kích thước theo chiều dọc */
-}
-
-.exercise {
-  border: 1px solid #ddd; /* Đường viền cho bài tập */
-  border-radius: 5px; /* Bo tròn góc */
-  padding: 10px; /* Khoảng cách trong bài tập */
-  margin: 10px 0; /* Khoảng cách trên và dưới */
-  background-color: #f9f9f9; /* Màu nền cho bài tập */
-}
-
-/* Đối với các test case */
-#testCases {
-  list-style-type: decimal; /* Đánh số tự động cho danh sách */
-  margin-left: 20px; /* Khoảng cách bên trái */
-}
-
-#testCases li {
-  margin-bottom: 10px; /* Khoảng cách giữa các test case */
-  border: 1px solid #ccc; /* Đường viền quanh từng test case */
-  padding: 10px; /* Khoảng cách bên trong */
-  border-radius: 5px; /* Bo tròn các góc */
-  background-color: #f9f9f9; /* Màu nền nhẹ */
+.contact-form button:hover {
+  background-color: #2980b9;
 }
