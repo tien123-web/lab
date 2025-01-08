@@ -3,36 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Chính</title>
+    <title>Trang Web Đơn Giản</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="labs.html">Labs</a></li>
-        <li><a href="#" onclick="logout()">Đăng xuất</a></li>
-      </ul>
+  <body class="index-page">
+    <!-- Thanh điều hướng -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html">
+          <img
+            src="/img/Ảnh chụp màn hình 2024-11-17 163108.png"
+            alt="Logo"
+            class="logo"
+          />
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="labs.html" class="active">Labs</a></li>
+        </ul>
+      </div>
     </nav>
+
+    <!-- Nội dung chính -->
     <div class="container">
-      <h1>Chào mừng đến với trang chủ!</h1>
-      <p>Đây là trang chính sau khi bạn đã đăng nhập thành công.</p>
+      <div class="main-content index-content">
+        <h1>Home</h1>
+        <p>Welcome to the Human-Computer Interaction page!</p>
+      </div>
     </div>
 
-    <script>
-      // Kiểm tra xem người dùng có đăng nhập chưa
-      if (!localStorage.getItem("loggedIn")) {
-        // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
-        window.location.href = "login.html";
-      }
+    <!-- Phần chân trang -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col contact-info">
+          <img
+            src="/img/Ảnh chụp màn hình 2024-11-17 163108.png"
+            alt="Profile"
+            class="profile-pic"
+          />
+          <ul>
+            <li>🏚 Thủ Đức, TP.Hồ Chí Minh</li>
+            <li>☎ 0988708461</li>
+            <li>✉ 23130330@st.hcmuaf.edu.vn</li>
+            <li>✉ tiendinh20032005@gmail.com</li>
+          </ul>
+        </div>
 
-      function logout() {
-        // Xóa trạng thái đăng nhập
-        localStorage.removeItem("loggedIn");
-        // Chuyển hướng về trang đăng nhập
-        window.location.href = "login.html";
-      }
-    </script>
+        <div class="footer-col quick-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="labs.html">Labs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col contact-form">
+          <h3>Contact Us</h3>
+          <form>
+            <input type="text" placeholder="Your Name" />
+            <input type="email" placeholder="Email" />
+            <textarea placeholder="Message"></textarea>
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
