@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Detail</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <style>
+    /* Định dạng thanh điều hướng */
+    .header-nav-wrap {
+      background-color: #333; /* Màu nền đậm hơn */
+      padding: 20px; /* Tạo khoảng cách giữa nội dung và mép */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo đổ bóng để làm nổi bật */
+      position: sticky;
+      top: 0;
+      z-index: 1000000000;
+      height: 80px;
+    }
+
+    /* Logo */
+    .header-logo a {
+      font-family: "Arial", sans-serif;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    /* Định dạng danh sách các liên kết */
+    .header-nav {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: contents;
+      justify-content: space-around;
+      width: 50%; /* Điều chỉnh kích thước của thanh menu */
+    }
+
+    /* Các mục trong danh sách liên kết */
+    .header-nav li {
+      margin: 0 15px;
+    }
+
+    /* Định dạng cho các liên kết */
+    .header-nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng khi di chuột */
+    }
+
+    /* Hiệu ứng hover cho liên kết */
+    .header-nav a:hover {
+      background-color: #555; /* Màu khi hover */
+      color: #ffcc00; /* Màu chữ khi hover */
+      border-radius: 5px;
+    }
+
+    /* Hiển thị trạng thái của liên kết hiện tại */
+    .header-nav .current a {
+      background-color: #ffcc00;
+      color: black;
+      border-radius: 5px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <h2>Lessons</h2>
+        <ul class="lesson-list">
+          <li class="tablinks active" data-electronic="allproducts">
+            1. Introduction
+          </li>
+          <li class="tablinks" data-electronic="Microcontrollers">
+            2. Setting Up the Development Environment
+          </li>
+          <li class="tablinks" data-electronic="DjangoBasic">
+            3. Django Basic
+          </li>
+          <li class="tablinks" data-electronic="DjangoAdvanced">
+            4. Django Advanced Concepts
+          </li>
+          <li class="tablinks" data-electronic="Pythonanywhere">
+            9. Pythonanywhere
+          </li>
+          <li class="tablinks" data-electronic="Syllabus">Syllabus</li>
+        </ul>
+      </div>
+
+      <div class="content tabcontent active" id="allproducts">
+        <h1>Lesson Content</h1>
+        <div
+          style="
+            padding-right: 10px;
+            padding-left: 10px;
+            border: 2px solid #183b25;
+          "
+        >
+          <h3 style="margin-bottom: 10px; margin-top: 20px">1. Introduction</h3>
+          <embed
+            src="./assets/picture/python.pdf"
+            type="application/pdf"
+            width="100%"
+            height="600px"
+          />
+        </div>
+      </div>
+
+      <div class="content tabcontent" id="Microcontrollers">
+        <h1>2. Setting Up the Development Environment</h1>
+        <p>Nội dung cơ bản về Django.</p>
+      </div>
+
+      <div class="content tabcontent" id="DjangoBasic">
+        <h1>3. Django Basic</h1>
+        <p>Nội dung cơ bản về Django.</p>
+      </div>
+
+      <div class="content tabcontent" id="DjangoAdvanced">
+        <h1>4 . Django Advanced Concepts</h1>
+        <p>Nội dung nâng cao về Django.</p>
+      </div>
+
+      <div class="content tabcontent" id="Pythonanywhere">
+        <h1>9. Pythonanywhere</h1>
+        <p>Hướng dẫn sử dụng Pythonanywhere.</p>
+      </div>
+
+      <div class="content tabcontent" id="Syllabus">
+        <h1>Syllabus</h1>
+        <p>Danh sách các chủ đề và lịch trình của khóa học.</p>
+      </div>
+    </div>
+
+    <!-- Nút Back -->
+    <button class="back-btn"><a href="index.html">Back to List</a></button>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .sidebar {
+        width: 25%;
+        background-color: #fff;
+        border-right: 1px solid #ddd;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 20px;
+        color: #444;
+      }
+
+      .lesson-list {
+        list-style: none;
+      }
+
+      .lesson-list li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+      }
+
+      .lesson-list li:hover {
+        background-color: #f0f0f0;
+      }
+
+      .lesson-list .active {
+        background-color: #82ca9c;
+        color: white;
+      }
+
+      .content {
+        width: 75%;
+        padding: 20px;
+        display: none;
+      }
+
+      .content.active {
+        display: block;
+      }
+
+      .back-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #82ca9c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+      }
+
+      .back-btn a {
+        color: aliceblue;
+        text-decoration: none;
+      }
+
+      .back-btn:hover a {
+        color: black;
+      }
+
+      .back-btn:hover {
+        background-color: red;
+      }
+    </style>
+
+    <script>
+      // Lấy tất cả các nút tab và nội dung tab
+      const tablinks = document.querySelectorAll(".tablinks");
+      const tabcontents = document.querySelectorAll(".tabcontent");
+
+      // Lặp qua tất cả các nút tab để thêm sự kiện click
+      tablinks.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Xóa class 'active' khỏi tất cả các tab và nội dung
+          tablinks.forEach((link) => link.classList.remove("active"));
+          tabcontents.forEach((content) => content.classList.remove("active"));
+
+          // Thêm class 'active' cho tab và nội dung tương ứng
+          tab.classList.add("active");
+          const targetContent = document.getElementById(
+            tab.getAttribute("data-electronic")
+          );
+          targetContent.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
