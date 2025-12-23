@@ -1,0 +1,164 @@
+/* Reset toàn bộ margin/padding mặc định */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Thanh menu chính */
+nav {
+  background-color: #1f1f1f; /* Đổi màu nền cho thanh menu */
+  position: fixed; /* Dính trên cùng */
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  z-index: 10;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  display: block;
+  color: rgb(255, 255, 255); /* Đổi màu chữ để phù hợp với màu nền mới */
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #575757;
+}
+
+nav ul li a.active {
+  background-color: #4caf50;
+}
+
+/* Logo nếu có */
+.logo {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* Container chính */
+.container {
+  width: 80%;
+  margin: 80px auto 20px; /* Thêm khoảng cách phía trên để tránh trùng với menu */
+  padding: 20px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Tiêu đề */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+/* Bảng */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Nút */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Form ẩn */
+#course-form {
+  display: none;
+  margin-top: 20px;
+}
+
+#course-form h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #2e16d1;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  table,
+  th,
+  td {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <title>MuleSoft Course</title>
+    <link rel="stylesheet" href="lab4.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="btn btn-outline-secondary me-2" href="index.html">
+          <i class="fas fa-arrow-left"></i> Home
+        </a>
+        <span class="navbar-text mx-auto">
+          MuleSoft 4.X Complete Guide For Beginners - Hands On Projects
+        </span>
+        <div class="d-flex">
+          <a class="nav-link" href="#"
+            ><i class="fas fa-star"></i> Leave a rating</a
+          >
+          <a class="nav-link" href="#"
+            ><i class="fas fa-trophy"></i> Your progress</a
+          >
+          <a class="nav-link" href="#"><i class="fas fa-share"></i> Share</a>
+          <a class="nav-link" href="#"><i class="fas fa-ellipsis-v"></i></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="wrapper d-flex">
+      <div class="main">
+        <div class="video-section">
+          <div class="card">
+            <div class="card-body text-center">
+              <h2 class="card-title">Video Introduction</h2>
+              <iframe
+                width="100%"
+                height="400"
+                src="https://www.youtube.com/embed/--iqrdHObSw?si=OjL4VOjd7JhZjPGN"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <div class="menu-bar mt-3">
+            <div class="menu-bar-container">
+              <ul class="nav nav-pills justify-content-center w-100">
+                <li class="nav-item flex-fill text-center">
+                  <a
+                    class="nav-link active"
+                    onclick="loadDetailContent('overview.html')"
+                    >Overview</a
+                  >
+                </li>
+                <li class="nav-item flex-fill text-center">
+                  <a class="nav-link" href="#">Q&A</a>
+                </li>
+                <li class="nav-item flex-fill text-center">
+                  <a class="nav-link" href="#">Notes</a>
+                </li>
+                <li class="nav-item flex-fill text-center">
+                  <a class="nav-link" href="#">Announcements</a>
+                </li>
+                <li class="nav-item flex-fill text-center">
+                  <a class="nav-link" href="#">Review</a>
+                </li>
+                <li class="nav-item flex-fill text-center">
+                  <a class="nav-link" href="#">Learning tools</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="course-content">
+          <div class="card">
+            <div class="card-body text-center">
+              <h1 class="card-title">
+                Upgraded with latest MuleSoft ESB versions, Anypoint Platform,
+                DataWeave, MUnit, DevOps, MCD Tests and Realtime Project
+              </h1>
+              <div class="ratings my-3">
+                <h4><i class="fas fa-star"></i> 4.6 (4,705 ratings)</h4>
+                <p>26,379 Students | 50.5 hours</p>
+              </div>
+              <div class="details">
+                <table class="table table-borderless text-center">
+                  <tbody>
+                    <tr>
+                      <td><i class="fas fa-calendar-alt"></i> Last updated:</td>
+                      <td>November 2023</td>
+                    </tr>
+                    <tr>
+                      <td><i class="fas fa-globe"></i> Language:</td>
+                      <td>English</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        English [Auto], French [Auto], <a href="#">5 more</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside id="sidebar">
+        <div class="sidebar-logo">
+          <a href="#">Menu</a>
+        </div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section1"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 1: Mule 4 installation set-up</span><br /><span
+                class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section1"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. Setup & Installation
+                  <span class="badge bg-secondary">8min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. Environment Configuration
+                  <span class="badge bg-secondary">4min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section2"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 2: Mule basics</span><br /><span class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section2"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. Develop first Mule app
+                  <span class="badge bg-secondary">10min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. Run, debug, export & import Mule
+                  app <span class="badge bg-secondary">11min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section3"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 3: Mule 4 advanced topics</span><br /><span
+                class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section3"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. API led connectivity
+                  <span class="badge bg-secondary">12min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. Deploying applications
+                  <span class="badge bg-secondary">10min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section4"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 4: MuleSoft certifications</span><br /><span
+                class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section4"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. Certification process
+                  <span class="badge bg-secondary">8min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. Tips for passing
+                  <span class="badge bg-secondary">10min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section5"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 5: Building APIs</span><br /><span
+                class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section5"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. Building a REST API
+                  <span class="badge bg-secondary">10min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. Creating a data pipeline
+                  <span class="badge bg-secondary">15min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section6"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 6: Advanced features</span><br /><span
+                class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section6"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. Batch processing
+                  <span class="badge bg-secondary">10min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. API management
+                  <span class="badge bg-secondary">15min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a
+              href="#"
+              class="sidebar-link collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#section7"
+              aria-expanded="false"
+            >
+              <i class="lni lni-folder"></i>
+              <span>Section 7: Future trends</span><br /><span
+                class="small-text"
+                >0 / 2 | 21min</span
+              >
+            </a>
+            <ul
+              id="section7"
+              class="sidebar-dropdown list-unstyled collapse"
+              data-bs-parent="#sidebar"
+            >
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 1. Latest MuleSoft updates
+                  <span class="badge bg-secondary">10min</span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link"
+                  ><input type="checkbox" /> 2. Industry insights
+                  <span class="badge bg-secondary">12min</span></a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Learning</title>
+    <link rel="stylesheet" href="lab5.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>My Learning</h1>
+      <p>
+        87hr 36min watched <span> ⓘ </span>
+        <a href="#" style="color: #dddddd">View all activity</a>
+      </p>
+    </div>
+    <div class="tab-menu">
+      <a href="#" onclick="loadContent('all_courses')">All courses</a>
+      <a href="#" onclick="loadContent('learning_paths')">Learning paths</a>
+      <a href="#" onclick="loadContent('certifications')">Certifications</a>
+      <a href="#" onclick="loadContent('archived')">Archived</a>
+      <a href="#" onclick="loadContent('learning_tools')">Learning tools</a>
+    </div>
+    <!-- Nội dung của mỗi "trang" trong cùng một file -->
+    <div id="all_courses" class="content">
+      <h2>All Courses</h2>
+      <p>Đây là nội dung của All Courses.</p>
+    </div>
+
+    <div id="learning_paths" class="content">
+      <h2>Learning Paths</h2>
+      <p>Đây là nội dung của Learning Paths.</p>
+    </div>
+
+    <div id="certifications" class="content">
+      <div class="section">
+        <div class="section-content">
+          <h2>My badges</h2>
+          <p>You have earned and uploaded <strong>0 badges</strong></p>
+          <p>
+            Currently, there are no badges uploaded to your profile. Begin your
+            journey towards your certification goals or
+            <a href="#" style="color: #8a2be2" onclick="importBadge()"
+              >upload your third-party badges</a
+            >
+            to your profile and impress your manager and peers with your
+            accomplishments.
+          </p>
+        </div>
+        <a href="#" class="badge-button" onclick="importNewBadge()"
+          >Import new badge</a
+        >
+      </div>
+
+      <div class="section">
+        <div class="section-content">
+          <h2>Certification preparation</h2>
+          <p>You are preparing for <strong>4 certifications</strong></p>
+        </div>
+        <a href="#" class="cert-button">Explore certification preparation</a>
+      </div>
+
+      <div class="section certification-list">
+        <div class="cert-card">
+          <!--chứng chỉ của Oracle-->
+          <img
+            src="/img/chung_chi_oracle.jpg"
+            alt="Oracle Certified Associate"
+          />
+          <h3>Oracle Certified Associate, Java SE 8 Programmer</h3>
+          <p>Oracle</p>
+        </div>
+        <div class="cert-card">
+          <!--chứng chỉ của ISTQB-->
+          <img src="/img/chung_chi_istqb.jpg" alt="ISTQB Certified Tester" />
+          <h3>ISTQB® Certified Tester Foundation Level (CTFL)</h3>
+          <p>Brightest</p>
+        </div>
+        <div class="cert-card">
+          <!--chứng chỉ của CEH-->
+          <img src="/img/chung_chi_ceh.png" alt="Certified Ethical Hacker" />
+          <h3>Certified Ethical Hacker (CEH)</h3>
+          <p>Brightest</p>
+        </div>
+        <div class="cert-card">
+          <!--chứng chỉ của CompTia A++-->
+          <img src="/img/chung_chi_comptiaa++.png" alt="CompTIA A+" />
+          <h3>Computing Technology Industry Association</h3>
+          <p>CompTIA</p>
+        </div>
+        <!-- Thêm các chứng chỉ khác nếu cần -->
+      </div>
+    </div>
+
+    <div id="archived" class="content">
+      <div class="content2">
+        <div class="course-card">
+          <img src="/img/csr.jpg" alt="Course Image" />
+          <div class="course-info">
+            <h3>FPT_Corporate Social Responsibility Training 2024</h3>
+            <p>FSOFT Content Development</p>
+            <div class="progress">100% complete</div>
+            <div class="progress-bar">
+              <div class="completion"></div>
+            </div>
+            <div class="rating">
+              <span>Your rating</span>
+              <div class="stars">★★★★☆</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="learning_tools" class="content">
+      <div class="content3">
+        <h2>Learning Tools</h2>
+        <p>
+          Explore a diverse range of courses and take advantage of these
+          versatile tools to gain knowledge, skills, and confidence at your own
+          pace.
+        </p>
+        <div class="tools">
+          <div class="tool-card">
+            <h3>Learning Reminders</h3>
+            <p>
+              Set time aside to learn and get reminders using your scheduler.
+            </p>
+            <p class="status">You currently have no ongoing reminders.</p>
+            <a href="#">See more</a>
+          </div>
+          <div class="tool-card">
+            <h3>
+              Reflections
+              <span class="beta">
+                <a href="#" style="color: #dee415" onclick="importBadge()"
+                  >Beta</a
+                ></span
+              >
+            </h3>
+            <p>Take time to reflect to strengthen your learning.</p>
+            <p class="status">
+              You have currently no recorded reflections on your learning
+              journey.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function loadContent(pageId) {
+        const contents = document.getElementsByClassName("content");
+        for (let i = 0; i < contents.length; i++) {
+          contents[i].classList.remove("active");
+        }
+        document.getElementById(pageId).classList.add("active");
+      }
+
+      function importBadge() {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".jpg, .jpeg, .png";
+        input.onchange = (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              const imgElement = document.createElement("div");
+              imgElement.className = "cert-card";
+              imgElement.innerHTML = `
+                <img src="${e.target.result}" alt="${file.name}" />
+                <h3>${file.name}</h3>
+                <p>Your custom badge</p>
+              `;
+              document
+                .querySelector(".certification-list")
+                .appendChild(imgElement);
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        input.click();
+      }
+    </script>
+    <script src="javascript5.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Section and Container */
+#business {
+  padding: 40px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title */
+.head_title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.head_title h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin: 0;
+}
+
+/* Row Styles */
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+  gap: 20px;
+}
+
+/* Card Styles */
+.col-md-3,
+.col-sm-6,
+.col-xs-12 {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.col-md-3:hover {
+  transform: scale(1.05);
+  background-color: #e8f0fe;
+}
+
+/* Icon */
+.community-edition i {
+  font-size: 40px;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Separator */
+.separator {
+  height: 1px;
+  background-color: #ddd;
+  margin: 10px 0;
+}
+
+/* Heading */
+.community-edition h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.button-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.button-btn:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Học Lập Trình</title>
+    <link rel="stylesheet" href="lab2.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Đăng Nhập</h2>
+      <form id="loginForm">
+        <label for="username">Tên người dùng/Email:</label>
+        <input type="text" id="username" required />
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" required />
+        <button type="submit">Đăng Nhập</button>
+        <a href="#">Quên mật khẩu?</a>
+      </form>
+
+      <div class="social-login">
+        <h3>Hoặc đăng nhập bằng</h3>
+        <button onclick="loginWithGoogle()">Đăng nhập với Google</button>
+        <button onclick="loginWithFacebook()">Đăng nhập với Facebook</button>
+        <button onclick="loginWithZalo()">Đăng nhập với Zalo</button>
+        <button onclick="goBack()">Quay lại</button>
+      </div>
+    </div>
+
+    <div class="dashboard-container" style="display: none">
+      <h2>Bảng Điều Khiển</h2>
+      <h3>Danh Sách Bài Tập</h3>
+      <div class="filter">
+        <label for="language">Lọc theo ngôn ngữ:</label>
+        <select id="language" onchange="filterExercises()">
+          <option value="all">Tất cả</option>
+          <option value="c">C</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+        </select>
+      </div>
+      <div class="exercises" id="exerciseList">
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 1: Giải Phương Trình Bậc Nhất</h4>
+          <p>Mô tả: Viết chương trình giải phương trình bậc nhất.</p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="c">
+          <h4>Bài Tập 2: Sắp Xếp Mảng</h4>
+          <p>Mô tả: Viết chương trình sắp xếp một mảng số nguyên.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="java">
+          <h4>Bài Tập 3: Tính Tổng Hai Số</h4>
+          <p>Mô tả: Viết chương trình tính tổng của hai số nguyên.</p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 4: Đảo Ngược Chuỗi</h4>
+          <p>Mô tả: Viết chương trình đảo ngược một chuỗi.</p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="c">
+          <h4>Bài Tập 5: Tính Giai Thừa</h4>
+          <p>
+            Mô tả: Viết chương trình tính giai thừa của một số nguyên dương.
+          </p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="java">
+          <h4>Bài Tập 6: Kiểm Tra Số Chẵn Lẻ</h4>
+          <p>
+            Mô tả: Viết chương trình kiểm tra một số có phải là số chẵn hay
+            không.
+          </p>
+          <p>Độ khó: Dễ</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 7: Tìm Kiếm Phần Tử Trong Mảng</h4>
+          <p>Mô tả: Viết chương trình tìm kiếm một phần tử trong mảng.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="c">
+          <h4>Bài Tập 8: Tính Số Nguyên Tố</h4>
+          <p>
+            Mô tả: Viết chương trình kiểm tra một số có phải là số nguyên tố hay
+            không.
+          </p>
+          <p>Độ khó: Khó</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="java">
+          <h4>Bài Tập 9: Sắp Xếp Một Mảng</h4>
+          <p>
+            Mô tả: Viết chương trình sắp xếp một mảng các số nguyên theo thứ tự
+            tăng dần.
+          </p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+        <div class="exercise" data-language="python">
+          <h4>Bài Tập 10: Tính Trung Bình Cộng</h4>
+          <p>Mô tả: Viết chương trình tính trung bình cộng của một mảng số.</p>
+          <p>Độ khó: Trung Bình</p>
+          <p>Trạng thái: <span class="status">Chưa bắt đầu</span></p>
+          <button onclick="selectExercise(this)">Chọn Bài Tập</button>
+        </div>
+      </div>
+      <h3>Bảng Xếp Hạng</h3>
+      <div id="leaderboard"></div>
+      <h3>Phản Hồi</h3>
+      <textarea
+        id="feedback"
+        rows="4"
+        placeholder="Nhập phản hồi của bạn..."
+      ></textarea>
+      <button onclick="submitFeedback()">Gửi Phản Hồi</button>
+    </div>
+
+    <div class="coding-container" style="display: none">
+      <h2 id="exerciseTitle"></h2>
+      <p id="exerciseDescription"></p>
+
+      <h3>Test Cases</h3>
+      <div id="testCases"></div>
+
+      <h3>Soạn Mã</h3>
+      <textarea
+        id="codeEditor"
+        rows="10"
+        placeholder="Nhập mã lập trình của bạn ở đây..."
+      ></textarea>
+      <button onclick="getHint()">Gợi Ý</button>
+      <button onclick="runCode()">Chạy Mã</button>
+      <button onclick="clearCode()">Xóa Mã</button>
+      <button onclick="submitCode()">Nộp Bài</button>
+      <div id="result" style="margin-top: 20px"></div>
+      <button onclick="backToDashboard()">Quay Lại Bảng Điều Khiển</button>
+    </div>
+
+    <script>
+      let hintCount = 3; // Giới hạn số lần gợi ý
+      let submissions = []; // Lưu trữ các lần nộp trước đó
+      let currentTestCases = []; // Lưu trữ các test cases được hiển thị
+
+      // Xử lý đăng nhập qua Google (giả lập)
+      function loginWithGoogle() {
+        alert("Đang chuyển tới trang đăng nhập Google...");
+      }
+
+      // Xử lý đăng nhập qua Facebook (giả lập)
+      function loginWithFacebook() {
+        alert("Đang chuyển tới trang đăng nhập Facebook...");
+      }
+
+      // Xử lý đăng nhập qua Zalo (giả lập)
+      function loginWithZalo() {
+        alert("Đang chuyển tới trang đăng nhập Zalo...");
+      }
+
+      // Hàm quay lại màn hình đăng nhập chính
+      function goBack() {
+        document.getElementById("loginForm").style.display = "block";
+        document.querySelector(".social-login").style.display = "none";
+      }
+
+      // Hiển thị phần đăng nhập khác nếu chọn
+      document.querySelector(".social-login").style.display = "none";
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+
+          // Chuyển đổi sang bảng điều khiển
+          document.querySelector(".login-container").style.display = "none";
+          document.querySelector(".dashboard-container").style.display =
+            "block";
+
+          // Tải bảng xếp hạng
+          loadLeaderboard();
+        });
+
+      // Hàm lọc bài tập
+      function filterExercises() {
+        const languageFilter = document.getElementById("language").value;
+        const exercises = document.querySelectorAll(".exercise");
+
+        exercises.forEach((exercise) => {
+          if (
+            languageFilter === "all" ||
+            exercise.dataset.language === languageFilter
+          ) {
+            exercise.style.display = "block"; // Hiển thị bài tập
+          } else {
+            exercise.style.display = "none"; // Ẩn bài tập
+          }
+        });
+      }
+
+      // Hàm chọn bài tập
+      function selectExercise(button) {
+        const exercise = button.parentElement;
+        const title = exercise.querySelector("h4").innerText;
+        const description = exercise.querySelector("p").innerText;
+
+        document.querySelector(".dashboard-container").style.display = "none";
+        document.querySelector(".coding-container").style.display = "block";
+
+        document.getElementById("exerciseTitle").innerText = title;
+        document.getElementById("exerciseDescription").innerText = description;
+
+        // Hiển thị test cases
+        displayTestCases();
+      }
+
+      // Hàm hiển thị test cases
+      function displayTestCases() {
+        const testCasesElement = document.getElementById("testCases");
+        testCasesElement.innerHTML = ""; // Xóa nội dung cũ
+
+        currentTestCases = [
+          { input: "1, 2", output: "3" },
+          { input: "5, 5", output: "10" },
+        ]; // Dữ liệu test case mẫu, cần thay đổi tùy thuộc vào bài tập
+
+        currentTestCases.forEach((testCase, index) => {
+          const div = document.createElement("div");
+          div.innerHTML = `<strong>Test Case ${index + 1}:</strong> Input: ${
+            testCase.input
+          }, Expected Output: ${testCase.output}`;
+          testCasesElement.appendChild(div);
+        });
+      }
+
+      // Hàm nhận gợi ý
+      function getHint() {
+        if (hintCount > 0) {
+          alert(
+            "Gợi ý: Hãy bắt đầu bằng cách xác định biến và cấu trúc điều kiện."
+          ); // Thay đổi gợi ý tùy thuộc vào bài tập
+          hintCount--;
+        } else {
+          alert("Bạn đã sử dụng hết số lần gợi ý.");
+        }
+      }
+
+      // Hàm chạy mã
+      function runCode() {
+        const code = document.getElementById("codeEditor").value;
+
+        try {
+          // Chạy mã (cần điều chỉnh cách thực thi mã)
+          eval(code);
+          document.getElementById("result").innerText =
+            "Mã đã chạy thành công!";
+        } catch (error) {
+          document.getElementById("result").innerText = "Lỗi: " + error.message;
+        }
+      }
+
+      // Hàm nộp bài
+      function submitCode() {
+        const code = document.getElementById("codeEditor").value;
+
+        submissions.push({
+          code: code,
+          testCases: currentTestCases,
+        });
+        alert("Bài đã nộp thành công!");
+        clearCode(); // Xóa mã sau khi nộp
+        loadLeaderboard();
+      }
+
+      // Hàm nạp bảng xếp hạng
+      function loadLeaderboard() {
+        const leaderboardElement = document.getElementById("leaderboard");
+        leaderboardElement.innerHTML =
+          "<p>Bảng xếp hạng sẽ hiển thị ở đây.</p>"; // Cần điều chỉnh hiển thị bảng xếp hạng
+      }
+
+      // Hàm xóa mã
+      function clearCode() {
+        document.getElementById("codeEditor").value = "";
+        document.getElementById("result").innerText = "";
+      }
+
+      // Hàm quay lại bảng điều khiển
+      function backToDashboard() {
+        document.querySelector(".coding-container").style.display = "none";
+        document.querySelector(".dashboard-container").style.display = "block";
+      }
+
+      // Hàm gửi phản hồi
+      function submitFeedback() {
+        const feedback = document.getElementById("feedback").value;
+        alert("Phản hồi đã được gửi!");
+        document.getElementById("feedback").value = ""; // Xóa nội dung phản hồi sau khi gửi
+      }
+    </script>
+  </body>
+</html>

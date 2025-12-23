@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Khóa Học</title>
+    <link rel="stylesheet" href="lab1.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Danh Sách Khóa Học</h2>
+      <input
+        type="text"
+        id="search"
+        placeholder="Tìm kiếm khóa học..."
+        onkeyup="searchCourse()"
+        style="margin-bottom: 20px"
+      />
+      <table>
+        <thead>
+          <tr>
+            <th>ID Khóa Học</th>
+            <th>Tên Học</th>
+            <th>Giảng Viên</th>
+            <th>Ngày Tạo</th>
+            <th>Hành Động</th>
+          </tr>
+        </thead>
+        <tbody id="course-list">
+          <!-- Các dòng khóa học sẽ được thêm vào đây -->
+        </tbody>
+      </table>
+      <button onclick="showCourseForm()">Thêm Khóa Học Mới</button>
+
+      <div id="course-form" style="display: none; margin-top: 20px">
+        <h2 id="form-title">Thêm Khóa Học</h2>
+        <div class="form-group">
+          <label for="course-name">Tên Khóa Học</label>
+          <input
+            type="text"
+            id="course-name"
+            placeholder="Nhập tên khóa học"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="course-description">Mô Tả Khóa Học</label>
+          <textarea
+            id="course-description"
+            rows="4"
+            placeholder="Nhập mô tả khóa học"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="course-instructor">Giảng Viên</label>
+          <select id="course-instructor">
+            <option value="Nguyễn Văn A">Nguyễn Văn A</option>
+            <option value="Trần Thị B">Trần Thị B</option>
+            <option value="Lê Văn C">Lê Văn C</option>
+            <option value="Nguyễn Văn A">Nguyễn Văn D</option>
+            <option value="Trần Thị B">Trần Thị A</option>
+            <option value="Lê Văn C">Lê Văn N</option>
+          </select>
+        </div>
+        <button onclick="saveCourse()">Lưu Khóa Học</button>
+        <button onclick="cancelCourse()">Hủy</button>
+      </div>
+
+      <script src="lab1.js"></script>
+    </div>
+  </body>
+</html>

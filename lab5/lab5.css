@@ -1,0 +1,287 @@
+/* Reset và cài đặt chung */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1c1c1c; /* Nền tối */
+  color: #ffffff; /* Màu chữ mặc định */
+}
+
+/* Header */
+.header {
+  background-color: #2c2c2c; /* Nền header */
+  padding: 20px;
+  text-align: left;
+}
+
+.header h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #ffffff; /* Đảm bảo tiêu đề có màu trắng */
+}
+
+.header p {
+  color: #bbbbbb; /* Màu chữ nhẹ cho phần mô tả */
+  font-size: 0.9em;
+}
+
+/* Tab Menu */
+.tab-menu {
+  display: flex;
+  justify-content: left;
+  background-color: #333; /* Nền menu */
+  padding: 15px 0;
+}
+
+.tab-menu a {
+  color: #ffffff; /* Màu chữ menu */
+  text-decoration: none;
+  margin: 0 15px;
+  padding-bottom: 5px;
+}
+
+.tab-menu a.active {
+  border: 2px solid white;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+/* Nội dung chính */
+.content {
+  padding: 20px;
+  width: 100%;
+  display: none;
+}
+
+.content.active {
+  display: block;
+}
+
+/* Phần Certification và Archived */
+.section,
+.archived-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #2c2c2c;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.section-content {
+  flex-grow: 1;
+  text-align: left;
+  margin-right: 20px;
+}
+
+.section h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* Nút Badge và Certification */
+.badge-button,
+.cert-button {
+  display: inline-block;
+  background-color: #8a2be2; /* Màu nền của nút */
+  color: white; /* Màu chữ của nút */
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
+/* Danh sách chứng chỉ */
+.certification-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Thẻ chứng chỉ */
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px; /* Chiều rộng lớn hơn cho cân đối */
+  padding: 20px;
+  background-color: white; /* Nền thẻ chứng chỉ */
+  margin: 20px 0;
+  border: 3px solid #ddd;
+  border-radius: 8px; /* Bo góc */
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cert-card img {
+  width: 120px; /* Kích thước hình ảnh lớn hơn */
+  height: auto; /* Tự động điều chỉnh chiều cao */
+  margin-bottom: 10px;
+}
+
+.cert-card h3 {
+  font-size: 1.2em; /* Kích thước chữ tiêu đề */
+  margin: 10px 0;
+  color: #333; /* Màu chữ tiêu đề đậm hơn */
+}
+
+.cert-card p {
+  font-size: 0.9em;
+  color: #555; /* Màu chữ mô tả rõ ràng hơn */
+}
+
+/* Container Archived */
+.archived-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #2c2c2c; /* Nền của container đã lưu trữ */
+  margin: 20px 0;
+}
+
+#archived h2 {
+  text-align: left;
+  margin-bottom: 15px;
+  color: #ffffff; /* Màu tiêu đề lưu trữ */
+}
+
+#archived img {
+  width: 120px;
+  height: auto; /* Tự động điều chỉnh chiều cao */
+}
+
+.archived-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #3c3c3c; /* Nền lưu trữ */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.archived-item p {
+  margin-left: 10px;
+  color: #fff; /* Màu chữ lưu trữ */
+}
+
+/* Navigation Bar */
+.content2.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #333; /* Nền của thanh điều hướng */
+  padding: 10px 0;
+  color: white; /* Màu chữ thanh điều hướng */
+}
+
+.content2.navbar a {
+  color: #bbb; /* Màu chữ liên kết thanh điều hướng */
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.content2.navbar a.active {
+  color: white; /* Màu chữ khi liên kết được kích hoạt */
+  border-bottom: 2px solid white; /* Đường viền dưới */
+}
+
+/* Course Card */
+.content2 {
+  display: flex;
+  flex-direction: column; /* Giữ nguyên hướng dọc */
+  align-items: flex-start; /* Căn trái cho toàn bộ khung */
+  margin-left: 0; /* Không có lề bên trái */
+  padding: 20px; /* Đặt lề padding cho khung */
+  width: auto; /* Đặt chiều rộng tự động nếu cần */
+}
+
+.content2 .course-card {
+  align-items: center;
+  max-width: 400px; /* Đặt chiều rộng tối đa cho thẻ khóa học */
+  background-color: rgb(186, 114, 114); /* Nền thẻ khóa học */
+  margin: 20px 0;
+  border: 3px solid #ddd;
+  border-radius: 5px; /* Bo góc cho thẻ khóa học */
+  overflow: hidden;
+}
+
+.content2 .course-card img {
+  width: 100%; /* Đặt chiều rộng hình ảnh */
+  display: block;
+}
+
+.content2 .course-info {
+  text-align: left; /* Căn trái cho thông tin khóa học */
+  padding: 15px; /* Đặt lề cho thông tin khóa học */
+}
+
+.content2 .course-info h3,
+.content2 .course-info p {
+  text-align: left; /* Căn trái cho tiêu đề và mô tả */
+}
+
+.content2 .progress,
+.content2 .rating {
+  text-align: left; /* Căn trái cho tiến độ và đánh giá */
+}
+
+.content2 .progress-bar {
+  height: 4px; /* Chiều cao thanh tiến độ */
+  background-color: #ddd; /* Màu nền thanh tiến độ */
+  position: relative; /* Vị trí tương đối */
+  margin-top: 8px; /* Lề trên */
+}
+
+.content2 .progress-bar .completion {
+  width: 100%; /* Chiều rộng hoàn thành */
+  height: 100%; /* Chiều cao hoàn thành */
+  background-color: purple; /* Màu hoàn thành */
+}
+
+/* Learning Tools Section */
+.learning-tools h2 {
+  font-size: 1.5em; /* Kích thước tiêu đề công cụ học tập */
+  margin-bottom: 10px; /* Lề dưới */
+}
+
+.learning-tools p {
+  margin-bottom: 20px; /* Lề dưới */
+}
+
+.tools {
+  display: flex; /* Hiển thị dạng flex */
+  justify-content: left; /* Căn trái */
+  gap: 20px; /* Khoảng cách giữa các công cụ */
+}
+
+/* Tool Card */
+.content3 .tool-card {
+  max-width: 300px; /* Chiều rộng tối đa cho thẻ công cụ */
+  background-color: #2c2c2c; /* Nền thẻ công cụ */
+  margin: 20px; /* Lề cho thẻ công cụ */
+  border: 3px solid #333; /* Viền cho thẻ công cụ */
+  border-radius: 8px; /* Bo góc cho thẻ công cụ */
+  overflow: hidden; /* Ẩn phần dư thừa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng cho thẻ công cụ */
+  text-align: center; /* Căn giữa nội dung */
+  color: white; /* Màu chữ của thẻ công cụ */
+  padding: 15px; /* Padding cho thẻ công cụ */
+}
+
+.content3 .tool-card img {
+  width: 100px; /* Chiều rộng hình ảnh */
+  height: auto; /* Chiều cao tự động */
+  margin: 10px 0; /* Lề trên và dưới cho hình ảnh */
+}
+
+/* Kết thúc CSS */
