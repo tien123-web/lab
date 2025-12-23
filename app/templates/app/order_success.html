@@ -1,0 +1,175 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content_checkout %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white text-center">
+                    <h3 class="mb-0"><i class="fas fa-check-circle"></i> ĐẶT HÀNG THÀNH CÔNG!</h3>
+                </div>
+
+                <div class="card-body text-center">
+                    <!-- Biểu tượng thành công -->
+                    <div class="success-icon mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 80px;"></i>
+                    </div>
+
+                    <h4 class="text-success mb-3">Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!</h4>
+                    <p class="lead">Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.</p>
+
+                    <!-- Thông tin đơn hàng -->
+                    <div class="order-info mt-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0"><i class="fas fa-receipt"></i> Thông tin đơn hàng</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row text-start">
+                                    <div class="col-md-6">
+                                        <p><strong>Mã đơn hàng:</strong></p>
+                                        <p><strong>Ngày đặt:</strong></p>
+                                        <p><strong>Tổng tiền:</strong></p>
+                                        <p><strong>Phương thức thanh toán:</strong></p>
+                                        <p><strong>Trạng thái:</strong></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="text-danger">{{ order.transaction_id }}</p>
+                                        <p>{{ order.date_ordered|date:"d/m/Y H:i" }}</p>
+                                        <p class="text-danger fw-bold">{{ order.final_total|intcomma }}₫</p>
+                                        <p>{{ order.get_payment_method_display }}</p>
+                                        <p><span class="badge bg-success">{{ order.get_payment_status_display }}</span></p>
+                                    </div>
+                                </div>
+
+                                <!-- Thông tin giao hàng -->
+                                <div class="mt-3 pt-3 border-top">
+                                    <h6><i class="fas fa-truck"></i> Thông tin giao hàng:</h6>
+                                    <p class="mb-1">{{ order.full_name }}</p>
+                                    <p class="mb-1">Điện thoại: {{ order.phone }}</p>
+                                    <p class="mb-0">Địa chỉ: {{ order.address }}, {{ order.ward }}, {{ order.district }}, {{ order.city }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thông báo -->
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-info-circle"></i> Lưu ý:</h6>
+                        <p class="mb-0">
+                            Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận đơn hàng.
+                            Vui lòng giữ điện thoại luôn mở để nhận cuộc gọi từ nhân viên.
+                        </p>
+                    </div>
+
+                    <!-- Nút hành động -->
+                    <div class="action-buttons mt-4">
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <a href="{% url 'home' %}" class="btn btn-primary btn-lg me-md-2">
+                                <i class="fas fa-shopping-bag"></i> TIẾP TỤC MUA SẮM
+                            </a>
+
+                            <a href="{% url 'order_detail' order.id %}" class="btn btn-outline-primary btn-lg me-md-2">
+                                <i class="fas fa-eye"></i> XEM CHI TIẾT ĐƠN HÀNG
+                            </a>
+
+                            <a href="{% url 'order_history' %}" class="btn btn-outline-secondary btn-lg">
+                                <i class="fas fa-history"></i> LỊCH SỬ ĐƠN HÀNG
+                            </a>
+                        </div>
+
+                        <!-- Nút in đơn hàng -->
+                        <div class="mt-3">
+                            <button onclick="window.print()" class="btn btn-outline-success">
+                                <i class="fas fa-print"></i> In đơn hàng
+                            </button>
+                        </div>
+
+                        <!-- Hiển thị đếm ngược -->
+                        <div class="mt-3">
+                            <p class="text-muted" id="countdown-text">
+                                Tự động chuyển về trang chủ sau <span id="countdown">5</span> giây...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer text-center text-muted">
+                    <small>Mọi thắc mắc vui lòng liên hệ hotline: 1900 1234</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.success-icon {
+    animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+.order-info {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+}
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 16px;
+}
+@media print {
+    .action-buttons, .card-footer {
+        display: none !important;
+    }
+}
+</style>
+
+<script>
+$(document).ready(function() {
+    // Tự động cuộn lên đầu trang
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+
+    // Phát âm thanh thành công (nếu muốn)
+    try {
+        var audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3');
+        audio.volume = 0.3;
+        audio.play();
+    } catch(e) {
+        console.log("Không thể phát âm thanh");
+    }
+
+    // Xóa giỏ hàng trong localStorage (nếu có)
+    if(typeof(Storage) !== "undefined") {
+        localStorage.removeItem('cart');
+    }
+
+    // Đếm ngược tự động chuyển trang
+    var countdown = 10;
+    var countdownElement = $('#countdown');
+    var countdownText = $('#countdown-text');
+
+    var countdownInterval = setInterval(function() {
+        countdown--;
+        countdownElement.text(countdown);
+
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            window.location.href = "{% url 'home' %}";
+        }
+    }, 1000);
+
+    // Cho phép người dùng hủy đếm ngược
+    countdownText.click(function() {
+        clearInterval(countdownInterval);
+        $(this).html('<i class="fas fa-times"></i> Đã hủy tự động chuyển trang');
+    });
+});
+</script>
+{% endblock content_checkout%}

@@ -1,0 +1,117 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block register-content %}
+{%for product in products%}
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4"> <img id="main-image" src="{{product.image_url}}" width="250" /> </div>
+<!--                            <div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa fa-long-arrow-left"></i>
+                                        <span class="ml-1">Trở về</span> </a>
+                                </div>
+                                <a href="{% url 'cart' %}" >
+                                    <i class="fa fa-shopping-cart text-muted"></i>
+                                </a>
+                            </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"></span>
+                                <h5 class="text-uppercase">{{product.name}}</h5>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">{{product.price}}đ</span>
+<!--                                    <div class="ml-2"> <small class="dis-price"></small></div>-->
+                                </div>
+                            </div>
+                            <p class="about">{{product.description}}</p>
+                            <div class="sizes mt-5">
+                                <h6 class="text-uppercase">{{product.category}}</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
+                            </div>
+                              <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Chèn vào detail.html, sau phần thông tin sản phẩm -->
+                <div class="mt-4">
+    <h4>Đánh giá</h4>
+
+    <!-- Form thêm review đơn giản -->
+    {% if user.is_authenticated %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Thêm đánh giá của bạn</h5>
+            <form method="POST" action="{% url 'add_review' products.0.id %}">
+                {% csrf_token %}
+                <div class="mb-2">
+                    <label>Đánh giá:</label><br>
+                    <select name="rating" class="form-select w-auto d-inline">
+                        <option value="5">5 sao</option>
+                        <option value="4">4 sao</option>
+                        <option value="3">3 sao</option>
+                        <option value="2">2 sao</option>
+                        <option value="1">1 sao</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <textarea name="comment" class="form-control" rows="3"
+                              placeholder="Nhận xét của bạn..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Gửi đánh giá</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <p>Vui lòng <a href="{% url 'login' %}">đăng nhập</a> để đánh giá sản phẩm.</p>
+    {% endif %}
+
+    <!-- Hiển thị danh sách reviews -->
+    <div class="reviews">
+        {% for product in products %}
+            {% for review in product.review_set.all %}
+            <div class="border-bottom py-3">
+                <div class="d-flex justify-content-between">
+                    <strong>{{ review.user.username }}</strong>
+                    <div>
+                        {% for i in "12345" %}
+                            {% if i|add:0 <= review.rating %}
+                                <span style="color: gold;">★</span>
+                            {% else %}
+                                <span>☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <p class="mb-1">{{ review.comment }}</p>
+                <small class="text-muted">{{ review.created_at|date:"d/m/Y" }}</small>
+
+                <!-- Nút xóa nếu là review của user -->
+                {% if user == review.user %}
+                <div class="mt-2">
+                    <form method="POST" action="{% url 'delete_review' review.id %}"
+                          onsubmit="return confirm('Xóa đánh giá này?')">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <p class="text-muted">Chưa có đánh giá nào.</p>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endfor%}
+{% endblock register-content %}

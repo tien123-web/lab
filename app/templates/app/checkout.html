@@ -1,0 +1,199 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content_checkout %}
+<div class="checkout-container">
+    <h2>Thanh toán</h2>
+
+    <!-- KIỂM TRA GIỎ HÀNG TRỐNG -->
+    {% if not items %}
+    <div class="alert alert-warning">
+        <i class="fas fa-shopping-cart"></i> Giỏ hàng của bạn đang trống!
+        <a href="{% url 'home' %}" class="alert-link">Quay lại mua sắm</a>
+    </div>
+    {% else %}
+    <!-- NỘI DUNG CHECKOUT KHI CÓ SẢN PHẨM -->
+    <div class="row">
+        <!-- Thông tin giỏ hàng -->
+        <div class="col-md-8">
+            <div class="checkout-section">
+                <h4>Thông tin đơn hàng ({{ cartItems }} sản phẩm)</h4>
+                <div class="order-items">
+                    {% for item in items %}
+                    <div class="order-item">
+                        <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="80">
+                        <div class="item-info">
+                            <h6>{{ item.product.name }}</h6>
+                            <p>{{ item.quantity }} x {{ item.product.price|intcomma }}₫</p>
+                        </div>
+                        <div class="item-total">
+                            {{ item.get_total|intcomma }}₫
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Thông tin vận chuyển -->
+            <div class="checkout-section">
+                <h4>Thông tin giao hàng</h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Họ và tên *</label>
+                                <input type="text" name="full_name" class="form-control" required
+                                       value="{{ order.full_name|default:request.user.get_full_name }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Số điện thoại *</label>
+                                <input type="tel" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa chỉ *</label>
+                        <input type="text" name="address" class="form-control" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Tỉnh/Thành phố *</label>
+                                <input type="text" name="city" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Quận/Huyện *</label>
+                                <input type="text" name="district" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Phường/Xã *</label>
+                                <input type="text" name="ward" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <!-- Phương thức thanh toán -->
+            <div class="checkout-section">
+                <h4>Phương thức thanh toán</h4>
+                {% for method_code, method_name in payment_methods %}
+                <div class="payment-method">
+                    <input type="radio" id="method_{{ method_code }}"
+                           name="payment_method" value="{{ method_code }}"
+                           {% if forloop.first %}checked{% endif %}>
+                    <label for="method_{{ method_code }}">
+                        {{ method_name }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Tổng thanh toán -->
+        <div class="col-md-4">
+            <div class="checkout-summary">
+                <h4>Tổng thanh toán</h4>
+                <div class="summary-item">
+                    <span>Tạm tính:</span>
+                    <span>{{ order.get_cart_total|intcomma }}₫</span>
+                </div>
+                <div class="summary-item">
+                    <span>Phí vận chuyển:</span>
+                    <span>{{ order.shipping_fee|intcomma }}₫</span>
+                </div>
+                <hr>
+                <div class="summary-item total">
+                    <strong>Tổng cộng:</strong>
+                    <strong>{{ order.final_total|intcomma }}₫</strong>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mt-3">
+                    Đặt hàng
+                </button>
+                </form>
+
+                <a href="{% url 'cart' %}" class="btn btn-outline-secondary btn-block mt-2">
+                    Quay lại giỏ hàng
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %} <!-- KẾT THÚC ELSE -->
+</div>
+
+<style>
+.checkout-container {
+    padding: 20px;
+}
+.checkout-section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.order-items {
+    margin-top: 15px;
+}
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.order-item img {
+    border-radius: 4px;
+    margin-right: 15px;
+}
+.item-info {
+    flex: 1;
+}
+.item-total {
+    font-weight: bold;
+    color: #e74c3c;
+}
+.checkout-summary {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 20px;
+}
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.summary-item.total {
+    font-size: 18px;
+    color: #e74c3c;
+}
+.payment-method {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.payment-method input[type="radio"] {
+    margin-right: 10px;
+}
+.alert-warning {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+.alert-warning i {
+    margin-right: 10px;
+}
+</style>
+{% endblock content_checkout %}

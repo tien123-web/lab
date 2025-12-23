@@ -1,0 +1,132 @@
+           /* ===== SALE PAGE ===== */
+.sale-title {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Card sản phẩm */
+.sale-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+           /* ===== SALE PAGE ===== */
+.sale-title {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Card sản phẩm */
+.sale-card {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sale-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Ảnh sản phẩm */
+.sale-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.sale-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Tên sản phẩm */
+.sale-card .card-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Giá */
+.sale-price {
+    font-size: 18px;
+    color: #dc3545;
+}
+
+/* Badge khuyến mãi */
+.sale-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+/* Footer card */
+.sale-card .card-footer {
+    border-top: none;
+}
+
+/* Nút thêm giỏ */
+.sale-btn {
+    width: 100%;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.sale-btn:hover {
+    background-color: #198754;
+    opacity: 0.9;
+}
+
+.sale-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* Ảnh sản phẩm */
+.sale-card img {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.sale-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Tên sản phẩm */
+.sale-card .card-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Giá */
+.sale-price {
+    font-size: 18px;
+    color: #dc3545;
+}
+
+/* Badge khuyến mãi */
+.sale-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+/* Footer card */
+.sale-card .card-footer {
+    border-top: none;
+}
+
+/* Nút thêm giỏ */
+.sale-btn {
+    width: 100%;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.sale-btn:hover {
+    background-color: #198754;
+    opacity: 0.9;
+}

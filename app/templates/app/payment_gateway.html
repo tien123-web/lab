@@ -1,0 +1,515 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+
+{% block content_checkout %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card {% if payment_method == 'BANK' %}border-primary
+                           {% elif payment_method == 'MOMO' %}border-danger
+                           {% elif payment_method == 'ZALO' %}border-info
+                           {% elif payment_method == 'VISA' %}border-warning
+                           {% else %}border-secondary{% endif %}">
+                
+                <!-- HEADER DINAMIC -->
+                <div class="card-header text-white text-center 
+                           {% if payment_method == 'BANK' %}bg-primary
+                           {% elif payment_method == 'MOMO' %}bg-danger
+                           {% elif payment_method == 'ZALO' %}bg-info
+                           {% elif payment_method == 'VISA' %}bg-warning
+                           {% else %}bg-secondary{% endif %}">
+                    <h3 class="mb-0">
+                        {% if payment_method == 'BANK' %}
+                            <i class="fas fa-university"></i> THANH TOÁN CHUYỂN KHOẢN NGÂN HÀNG
+                        {% elif payment_method == 'MOMO' %}
+                            <i class="fas fa-mobile-alt"></i> THANH TOÁN QUA VÍ MOMO
+                        {% elif payment_method == 'ZALO' %}
+                            <i class="fas fa-bolt"></i> THANH TOÁN QUA ZALOPAY
+                        {% elif payment_method == 'VISA' %}
+                            <i class="fas fa-credit-card"></i> THANH TOÁN THẺ QUỐC TẾ
+                        {% endif %}
+                    </h3>
+                </div>
+                
+                <div class="card-body">
+                    <!-- THÔNG BÁO QUAN TRỌNG -->
+                    <div class="alert alert-warning">
+                        <h5><i class="fas fa-exclamation-triangle"></i> QUAN TRỌNG:</h5>
+                        <p class="mb-0">
+                            {% if payment_method == 'BANK' %}
+                                Vui lòng chuyển khoản trong vòng <strong>10 phút</strong> để đơn hàng được xử lý.
+                            {% elif payment_method == 'MOMO' %}
+                                Mã QR có hiệu lực trong <strong>10 phút</strong>.
+                            {% elif payment_method == 'ZALO' %}
+                                Mã thanh toán có hiệu lực trong <strong>10 phút</strong>.
+                            {% elif payment_method == 'VISA' %}
+                                Phiên thanh toán có hiệu lực trong <strong>10 phút</strong>.
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    <!-- THÔNG TIN ĐƠN HÀNG -->
+                    <div class="order-info mb-4">
+                        <h5><i class="fas fa-receipt"></i> Thông tin đơn hàng</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th width="40%">Mã đơn hàng:</th>
+                                    <td class="text-danger fw-bold">{{ order.transaction_id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tổng thanh toán:</th>
+                                    <td class="text-danger fw-bold">{{ order.final_total|intcomma }}₫</td>
+                                </tr>
+                                <tr>
+                                    <th>Phương thức:</th>
+                                    <td>{{ order.get_payment_method_display }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Thời hạn thanh toán:</th>
+                                    <td>
+                                        {% if payment_method == 'BANK' %}
+                                            10 phút kể từ {{ order.date_ordered|date:"d/m/Y H:i" }}
+                                        {% elif payment_method == 'MOMO' %}
+                                            10 phút
+                                        {% elif payment_method == 'ZALO' %}
+                                            10 phút
+                                        {% elif payment_method == 'VISA' %}
+                                            10 phút
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- PHẦN NỘI DUNG THANH TOÁN -->
+                    {% if payment_method == 'BANK' %}
+                        <!-- NGÂN HÀNG -->
+                        <div class="payment-content">
+                            <h5><i class="fas fa-credit-card"></i> Thông tin tài khoản ngân hàng</h5>
+                            <div class="row">
+                                {% for bank in payment_info.banks %}
+                                <div class="col-md-6 mb-3">
+                                    <div class="card h-100 border {% if forloop.first %}border-success{% endif %}">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">{{ bank.name }}</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="mb-1"><strong>Số tài khoản:</strong></p>
+                                            <p class="text-primary fw-bold">{{ bank.account_number }}</p>
+                                            
+                                            <p class="mb-1"><strong>Chủ tài khoản:</strong></p>
+                                            <p>{{ bank.account_holder }}</p>
+                                            
+                                            <p class="mb-1"><strong>Chi nhánh:</strong></p>
+                                            <p>{{ bank.branch }}</p>
+                                            
+                                            <p class="mb-1"><strong>Số tiền:</strong></p>
+                                            <p class="text-danger fw-bold">{{ order.final_total|intcomma }}₫</p>
+                                            
+                                            <p class="mb-1"><strong>Nội dung chuyển khoản:</strong></p>
+                                            <div class="alert alert-info p-2">
+                                                <code class="text-dark">{{ order.transaction_id }}</code>
+                                                <button class="btn btn-sm btn-outline-secondary copy-btn ms-2" 
+                                                        data-text="{{ order.transaction_id }}">
+                                                    <i class="fas fa-copy"></i> Copy
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                    {% elif payment_method == 'MOMO' %}
+                        <!-- MOMO -->
+                        <div class="payment-content text-center">
+                            <!-- Logo -->
+                            <div class="momo-logo mb-4">
+                                <div class="bg-danger text-white d-inline-block rounded-circle p-4">
+                                    <i class="fas fa-wallet fa-4x"></i>
+                                </div>
+                                <h2 class="mt-3 text-danger">MoMo</h2>
+                            </div>
+                            
+                            <!-- QR Code -->
+                            <div class="qr-code mb-4">
+                                <div class="border rounded p-4 bg-light d-inline-block">
+                                    <div class="text-center mb-2">
+                                        <canvas id="paymentQRCode" width="200" height="200"></canvas>
+                                    </div>
+                                    <p class="small text-muted mb-0">Quét mã QR bằng ứng dụng MoMo</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Thông tin chuyển khoản -->
+                            <div class="transfer-info mb-4">
+                                <h6><i class="fas fa-exchange-alt"></i> HOẶC chuyển khoản đến:</h6>
+                                <div class="alert alert-info">
+                                    <p class="mb-1"><strong>Số điện thoại:</strong> {{ payment_info.phone }}</p>
+                                    <p class="mb-1"><strong>Tên tài khoản:</strong> {{ payment_info.account_name }}</p>
+                                    <p class="mb-0"><strong>Nội dung:</strong> <code>{{ payment_info.content_prefix }}{{ order.transaction_id }}</code></p>
+                                    <button class="btn btn-sm btn-outline-secondary copy-btn mt-2" 
+                                            data-text="{{ payment_info.content_prefix }}{{ order.transaction_id }}">
+                                        <i class="fas fa-copy"></i> Copy nội dung
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    {% elif payment_method == 'ZALO' %}
+                        <!-- ZALOPAY -->
+                        <div class="payment-content text-center">
+                            <!-- Logo -->
+                            <div class="zalopay-logo mb-4">
+                                <div class="bg-info text-white d-inline-block rounded p-3">
+                                    <i class="fas fa-bolt fa-4x"></i>
+                                </div>
+                                <h2 class="mt-3 text-info">ZaloPay</h2>
+                            </div>
+                            
+                            <!-- QR Code -->
+                            <div class="qr-code mb-4">
+                                <div class="border rounded p-4 bg-light d-inline-block">
+                                    <div class="text-center mb-2">
+                                        <canvas id="paymentQRCode" width="200" height="200"></canvas>
+                                    </div>
+                                    <p class="small text-muted mb-0">Quét mã QR bằng ZaloPay</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Link thanh toán -->
+                            <div class="payment-link mb-4">
+                                <h6><i class="fas fa-link"></i> HOẶC thanh toán bằng link:</h6>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" 
+                                           value="{{ payment_info.payment_link }}" 
+                                           readonly
+                                           id="paymentLink">
+                                    <button class="btn btn-outline-info copy-btn" 
+                                            data-text="{{ payment_info.payment_link }}">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <small class="text-muted">Nhấn vào link hoặc copy để mở trong ZaloPay</small>
+                            </div>
+                        </div>
+                        
+                    {% elif payment_method == 'VISA' %}
+                        <!-- THẺ QUỐC TẾ -->
+                        <div class="payment-content">
+                            <!-- Logo thẻ -->
+                            <div class="card-logos text-center mb-4">
+                                <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" class="mx-2">
+                                <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard" class="mx-2">
+                                <img src="https://img.icons8.com/color/48/000000/amex.png" alt="Amex" class="mx-2">
+                            </div>
+                            
+                            <!-- Form thẻ -->
+                            <form id="cardPaymentForm">
+                                {% csrf_token %}
+                                <input type="hidden" name="order_id" value="{{ order.id }}">
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Số thẻ <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" 
+                                               placeholder="1234 5678 9012 3456" 
+                                               pattern="[0-9\s]{13,19}" 
+                                               maxlength="19"
+                                               required>
+                                        <span class="input-group-text">
+                                            <i class="fas fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                    <small class="text-muted">Nhập số thẻ không có dấu cách</small>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Ngày hết hạn <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" 
+                                               placeholder="MM/YY" 
+                                               pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                                               required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">CVV <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" 
+                                               placeholder="123" 
+                                               pattern="[0-9]{3,4}"
+                                               maxlength="4"
+                                               required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Tên chủ thẻ <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" 
+                                           placeholder="NGUYEN VAN A"
+                                           required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="secure3d" checked>
+                                        <label class="form-check-label" for="secure3d">
+                                            Sử dụng xác thực 3D Secure
+                                        </label>
+                                    </div>
+                                    <small class="text-muted">Bảo mật bổ sung từ ngân hàng phát hành thẻ</small>
+                                </div>
+                            </form>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- HƯỚNG DẪN -->
+                    <div class="instructions mb-4">
+                        <h5><i class="fas fa-info-circle"></i> Hướng dẫn thanh toán</h5>
+                        <div class="list-group">
+                            {% for step in payment_info.instructions %}
+                            <div class="list-group-item">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                {{ step }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <!-- THÔNG BÁO SAU THANH TOÁN -->
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-check-circle"></i> Sau khi thanh toán:</h6>
+                        <p class="mb-0">
+                            {% if payment_method == 'BANK' %}
+                                Hệ thống sẽ tự động xác nhận trong vòng <strong>15-30 phút</strong> (trong giờ hành chính).
+                            {% else %}
+                                Hệ thống sẽ xác nhận ngay lập tức khi thanh toán thành công.
+                            {% endif %}
+                            Bạn sẽ nhận được email xác nhận và có thể theo dõi đơn hàng trong mục 
+                            <a href="{% url 'order_history' %}">Lịch sử đơn hàng</a>.
+                        </p>
+                    </div>
+                    
+                    <!-- NÚT HÀNH ĐỘNG -->
+                    <div class="action-buttons text-center">
+                        <div class="d-grid gap-2 d-md-flex justify-content-center">
+                            <!-- Nút chính -->
+                            {% if payment_method == 'VISA' %}
+                                <button type="submit" form="cardPaymentForm" class="btn btn-warning btn-lg me-md-2">
+                                    <i class="fas fa-lock"></i> THANH TOÁN NGAY
+                                </button>
+                            {% else %}
+                                <button id="confirm-payment" class="btn btn-success btn-lg me-md-2">
+                                    <i class="fas fa-check"></i> TÔI ĐÃ THANH TOÁN
+                                </button>
+                            {% endif %}
+                            
+                            <!-- Demo cho testing -->
+                            <button id="demo-success" class="btn btn-primary me-md-2">
+                                <i class="fas fa-laptop-code"></i> Demo thanh toán thành công
+                            </button>
+                            
+                            <a href="{% url 'order_detail' order.id %}" class="btn btn-outline-primary me-md-2">
+                                <i class="fas fa-eye"></i> Chi tiết đơn hàng
+                            </a>
+                            
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-home"></i> Trang chủ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer text-center text-muted">
+                    <small>
+                        {% if payment_method == 'BANK' %}
+                            Mọi thắc mắc vui lòng liên hệ: 1900 1234 (8:00 - 22:00 hàng ngày)
+                        {% elif payment_method == 'MOMO' %}
+                            Hỗ trợ MoMo: 1900 545 426 (7:00 - 22:00 hàng ngày)
+                        {% elif payment_method == 'ZALO' %}
+                            Hỗ trợ ZaloPay: 1900 558 868
+                        {% elif payment_method == 'VISA' %}
+                            Hỗ trợ thẻ: 1900 1234 - 24/7
+                        {% endif %}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Responsive styles */
+@media (max-width: 768px) {
+    .action-buttons .btn {
+        margin-bottom: 10px;
+    }
+}
+
+/* Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.payment-content .card:hover {
+    animation: pulse 0.5s;
+}
+
+/* Copy button */
+.copy-btn.copied {
+    background-color: #198754 !important;
+    color: white !important;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Khởi tạo QR Code nếu có
+    {% if payment_method == 'MOMO' or payment_method == 'ZALO' %}
+        var qrContent = '';
+        {% if payment_method == 'MOMO' %}
+            qrContent = 'momo://transfer?phone={{ payment_info.phone }}&amount={{ order.final_total }}&content={{ payment_info.content_prefix }}{{ order.transaction_id }}';
+        {% elif payment_method == 'ZALO' %}
+            qrContent = '{{ payment_info.payment_link }}';
+        {% endif %}
+        
+        QRCode.toCanvas(document.getElementById('paymentQRCode'), qrContent, function (error) {
+            if (error) console.error(error);
+        });
+    {% endif %}
+    
+    // Format số thẻ cho VISA
+    {% if payment_method == 'VISA' %}
+        $('input[placeholder*="1234 5678"]').on('input', function() {
+            var value = $(this).val().replace(/\s/g, '').replace(/[^0-9]/g, '');
+            var formatted = '';
+            
+            for (var i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formatted += ' ';
+                }
+                formatted += value[i];
+            }
+            
+            $(this).val(formatted.substring(0, 19));
+        });
+    {% endif %}
+    
+    // Xử lý copy button
+    $('.copy-btn').click(function() {
+        var text = $(this).data('text') || $('#paymentLink').val();
+        var button = $(this);
+        
+        navigator.clipboard.writeText(text).then(function() {
+            var originalHTML = button.html();
+            var originalClass = button.attr('class');
+            
+            button.html('<i class="fas fa-check"></i> Đã copy');
+            button.removeClass().addClass('btn btn-success btn-sm copied');
+            
+            setTimeout(function() {
+                button.html(originalHTML);
+                button.removeClass().addClass(originalClass);
+            }, 2000);
+        });
+    });
+    
+    // Xác nhận đã thanh toán (cho BANK, MOMO, ZALO)
+    $('#confirm-payment').click(function() {
+        Swal.fire({
+            title: 'Xác nhận đã thanh toán',
+            html: 'Bạn đã hoàn tất thanh toán cho đơn hàng <strong>{{ order.transaction_id }}</strong>?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Đã thanh toán',
+            cancelButtonText: 'Chưa thanh toán'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Cảm ơn bạn!',
+                    html: 'Chúng tôi sẽ xác nhận thanh toán trong thời gian sớm nhất.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
+    
+    // Demo thanh toán thành công
+    $('#demo-success').click(function() {
+        Swal.fire({
+            title: 'Đang xử lý...',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        }).then(() => {
+            // Gửi request giả lập
+            $.ajax({
+                url: '{% url "payment_callback" %}',
+                type: 'POST',
+                data: {
+                    'order_id': '{{ order.id }}',
+                    'payment_method': '{{ payment_method }}',
+                    'status': 'success',
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Thanh toán thành công!',
+                        html: 'Đơn hàng đã được thanh toán.<br>Chuyển hướng đến trang xác nhận...',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.href = '{% url "order_success" order.id %}';
+                    });
+                }
+            });
+        });
+    });
+    
+    // Xử lý form thẻ
+    {% if payment_method == 'VISA' %}
+        $('#cardPaymentForm').submit(function(e) {
+            e.preventDefault();
+            
+            Swal.fire({
+                title: 'Đang xử lý...',
+                text: 'Vui lòng không đóng trình duyệt',
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then(() => {
+                // Giả lập chuyển đến trang 3D Secure
+                Swal.fire({
+                    title: 'Chuyển hướng đến 3D Secure',
+                    html: 'Vui lòng hoàn tất xác thực trên trang của ngân hàng.',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tiếp tục',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Demo thành công
+                        $('#demo-success').click();
+                    }
+                });
+            });
+        });
+    {% endif %}
+    
+    // Load SweetAlert2 nếu chưa có
+    if (typeof Swal === 'undefined') {
+        $.getScript('https://cdn.jsdelivr.net/npm/sweetalert2@11');
+    }
+});
+</script>
+{% endblock content_checkout %}

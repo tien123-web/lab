@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block main-content %}
+
+<link rel="stylesheet" href="{% static 'app/css/sale.css' %}">
+
+<div class="container mt-4 mb-5">
+    <h2 class="text-center text-danger fw-bold mb-4 sale-title">
+        🔥 SẢN PHẨM KHUYẾN MÃI 🔥
+    </h2>
+
+    <div class="row">
+        {% for product in sale_products %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 shadow-sm sale-card position-relative">
+
+                <!-- Badge -->
+                <span class="badge bg-danger sale-badge">
+                    SALE
+                </span>
+
+                <!-- Hình ảnh -->
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                {% else %}
+                    <img src="{% static 'app/image/no-image.png' %}" class="card-img-top" alt="No image">
+                {% endif %}
+
+                <div class="card-body text-center">
+                    <h6 class="card-title">{{ product.name }}</h6>
+
+                    <!-- Giá -->
+                    <p class="fw-bold sale-price">
+                        {{ product.price|floatformat:0 }} đ
+                    </p>
+                </div>
+
+                <!-- Thêm vào giỏ -->
+                <div class="card-footer text-center bg-white">
+                    <button
+                        data-product="{{ product.id }}"
+                        data-action="add"
+                        class="btn btn-success btn-sm update-cart sale-btn">
+                        Thêm vào giỏ
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        {% empty %}
+        <p class="text-center">Hiện chưa có sản phẩm khuyến mãi.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock main-content %}
