@@ -1,0 +1,48 @@
+name: CD - Triển khai lên QA
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  create-qa-build:
+    name: Tạo bản build QA
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Build JAR
+        run: mvn clean package
+      
+      - name: Lấy version
+        id: version
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Tạo GitHub Release cho QA
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: qa-${{ steps.version.outputs.VERSION }}-${{ github.run_number }}
+          name: "🎮 QA Build #${{ github.run_number }}"
+          body: |
+            ## Memory Game - Bản QA
+            
+            **Version:** ${{ steps.version.outputs.VERSION }}
+            **Build:** ${{ github.run_number }}
+            
+            ### 📦 Cách chạy test:
+            1. Tải file JAR bên dưới
+            2. Chạy: `java -jar memoryfx-*.jar`
+          files: target/*.jar
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
